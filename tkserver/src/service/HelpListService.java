@@ -4,6 +4,7 @@ import model.lists.HelpList;
 import model.lists.ListEntry;
 import model.persons.Student;
 import model.persons.Tutor;
+import testFakeDatabase.DatabaseClass;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,7 +15,7 @@ import java.util.Map;
  * Created by x on 7/29/15.
  */
 public class HelpListService {
-    private Map<Long, ListEntry> listEntryMap = new HashMap<>();
+    private Map<Long, ListEntry> listEntryMap = DatabaseClass.getListEntries();
 
     public HelpListService() {
         //adding test entries
@@ -31,9 +32,14 @@ public class HelpListService {
     }
 
     public ListEntry addListEntry(ListEntry listEntry){
-        listEntry.setEntryId(listEntryMap.size()+1);
+        listEntry.setEntryId(listEntryMap.size() + 1);
 
-        return listEntryMap.put(listEntry.getEntryId(), listEntry);
+        System.out.println(listEntry.getCourse());
+
+        System.out.println("SIZE BEFORE:" + listEntryMap.size());
+        listEntryMap.put(listEntry.getEntryId(), listEntry);
+        System.out.println("SIZE AFTER:" + listEntryMap.size());
+        return listEntry;
     }
 
     public ListEntry updateListEntry(ListEntry listEntry) {

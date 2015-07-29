@@ -39,6 +39,8 @@ public class HelpListResource {
 
     @POST
     public ListEntry addListEntry(ListEntry listEntry){
+
+        System.out.println("POST HAPPENED");
         return helpListService.addListEntry(listEntry);
     }
 
