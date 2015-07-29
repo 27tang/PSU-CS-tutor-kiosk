@@ -44,4 +44,9 @@ public class HelpListResource {
         return helpListService.addListEntry(listEntry);
     }
 
+
+    //PUT function
+
+    //DELETE
+
 }

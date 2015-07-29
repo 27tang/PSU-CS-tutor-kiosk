@@ -12,7 +12,7 @@ public class Student extends IdInfo {
     public Student() {
     }
 
-    public Student(String studentId, String badgeNumber, String name) {
+    public Student(long studentId, long badgeNumber, String name) {
         super(studentId, badgeNumber);
         this.name = name;
     }

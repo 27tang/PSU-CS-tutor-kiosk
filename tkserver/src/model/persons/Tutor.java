@@ -10,7 +10,7 @@ public class Tutor extends Student {
     public Tutor() {
     }
 
-    public Tutor(String studentId, String badgeNumber, String name) {
+    public Tutor(long studentId, long badgeNumber, String name) {
         super(studentId, badgeNumber, name);
     }
 }
