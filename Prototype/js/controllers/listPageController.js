@@ -1,4 +1,4 @@
-app.controller('listPageController', ['$scope', 'helpList', 'entities', '$http', function($scope, helpList, entities) {
+app.controller('listPageController', ['$state','$scope', 'helpList', 'entities', '$http', function($state, $scope, helpList, entities) {
 
 
     $scope.newEntry = {
@@ -12,7 +12,13 @@ app.controller('listPageController', ['$scope', 'helpList', 'entities', '$http',
         var text = '{"listEntry":{"course":"' + courseNum + '","date":"' + newDate + '","entryId":1,"location":4,"tuteeId":'+ tuteeId +',"tutorId":' + tutorId + '}}';
 
         console.log(text);
-        helpList.postHelpList(text);
+        helpList.postHelpList(text).then($scope.reloadPage());
+
+
+    };
+
+    $scope.reloadPage = function(){
+        $state.go($state.$current, null, { reload: true });
     };
 
     $scope.entryToDelete = 0;
