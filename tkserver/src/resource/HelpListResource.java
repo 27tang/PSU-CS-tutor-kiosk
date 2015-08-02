@@ -47,6 +47,19 @@ public class HelpListResource {
 
     //PUT function
 
+    @PUT
+    @Path("/{entryId}")
+    public ListEntry updateListEntry(ListEntry listEntry) {
+        return helpListService.updateListEntry(listEntry);
+    }
+
     //DELETE
+
+    @DELETE
+    @Path("/{entryId}")
+    public ListEntry deleteListEntry(){
+        System.out.println("WENT INTO DELETE FOR LISTENTRY: " + 1);
+        return helpListService.removeListEntry(1);
+    }
 
 }

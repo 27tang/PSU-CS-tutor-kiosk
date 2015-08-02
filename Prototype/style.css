@@ -1,0 +1,143 @@
+
+@font-face {
+    font-family: 'Marske';
+    src: url('fonts/Marske.otf')
+    format('opentype');
+    src: url('fonts/Marske.ttf')
+    format('truetype');
+}
+
+
+body {
+    /*background-image: url(img/space2.jpg); */
+    background-color: black;
+    background-size: 120%;
+}
+
+.fontStyle {
+    font-family: Marske;
+    font-size: 30px;
+    text-shadow: 2px 2px 9px #005399;
+}
+    .fontStyle:hover {
+        animation: blur .75s ease-out;
+    }
+
+
+.navbar-default {
+
+    background-color: rgba(0,0,0,.34);
+
+}
+.navbar-brand {
+
+    font-family: Marske;
+    color: aquamarine;
+    font-size: 40px;
+    text-shadow: 2px 2px 9px #005399;
+
+}
+.navbar-brand:hover {
+
+    animation: blur .75s ease-out;
+}
+
+input {
+    color: aquamarine;
+    background-color:rgba(1, 7, 29, 0.74) ;
+}
+
+.kbutton {
+
+    width:300px;
+    height: 60px;
+    background-color:rgba(1, 7, 29, 0.74) ;
+    text-shadow: 2px 2px 9px #005399;
+    font-family: Marske;
+    font-size: 30px;
+    color: aquamarine;
+    margin: auto;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.kbutton:hover {
+    font-family: Marske;
+    font-size: 30px;
+    text-shadow: 2px 2px 9px #005399;
+    animation:blur .75s ease-out;
+
+}
+
+@keyframes blur{
+    from{
+        text-shadow:0px 0px 10px #fff,
+        0px 0px 10px #fff,
+        0px 0px 25px #fff,
+        0px 0px 25px #fff,
+        0px 0px 25px #fff,
+        0px 0px 25px #fff,
+        0px 0px 25px #fff,
+        0px 0px 25px #fff,
+        0px 0px 50px #fff,
+        0px 0px 50px #fff,
+        0px 0px 50px #7B96B8,
+        0px 0px 150px #7B96B8,
+        0px 10px 100px #7B96B8,
+        0px 10px 100px #7B96B8,
+        0px 10px 100px #7B96B8,
+        0px 10px 100px #7B96B8,
+        0px -10px 100px #7B96B8,
+        0px -10px 100px #7B96B8;}
+}
+
+
+.inputFieldBox {
+    color:white;
+    background-color: rgba(192, 0, 244, 0.14);
+    width: 300px;
+    height:50px;
+    font-size: 20px;
+}
+
+.tableStyle {
+    margin: auto;
+    width: 70%;
+    border: solid white;
+    background-color: rgba(1, 7, 29, 0.54);
+}
+
+.fontstuffs {
+    color: ghostwhite;
+    font-size: 25px;
+    margin: auto;
+    padding: 20px;
+}
+
+
+
+table {
+
+    margin: auto;
+    border: 2px solid darkslateblue;
+    background-color: rgba(255,255,255,0.05)
+}
+
+thead {
+    font-size: 20px;
+    border: 2px solid darkslateblue;
+}
+
+th {
+    text-align: center;
+    padding: 15px;
+    text-shadow: 2px 2px 9px #001d2f;
+}
+
+td {
+    text-align: center;
+    padding: 15px;
+    border: 4px solid darkblue;
+    font-size: 20px;
+    text-shadow: 3px 3px 5px #000000;
+}

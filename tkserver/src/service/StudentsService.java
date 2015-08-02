@@ -23,6 +23,8 @@ public class StudentsService {
         studentsList.put(999999996L, new Student(999999996, 11116, "Willie Wellington"));
         studentsList.put(999999997L, new Student(999999997, 11117, "Chingo McGhee"));
         studentsList.put(999999998L, new Student(999999998, 11118, "Tallahassee Weasleman"));
+        studentsList.put(999999999L, new Student(999999999, 11119, "Cranko Watterbager"));
+        studentsList.put(999999990L, new Student(999999990, 11110, "Pepe Silvia"));
     }
 
     public List<Student> getAllStudents() {

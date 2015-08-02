@@ -19,8 +19,8 @@ public class HelpListService {
 
     public HelpListService() {
         //adding test entries
-        listEntryMap.put(1L, new ListEntry(1, 999999992, "CS202", 4, 111));
-        listEntryMap.put(2L, new ListEntry(2, 999999996, "CS203", 1, 222));
+        listEntryMap.put(1L, new ListEntry(1, 999999992, "CS202", 4, 900996708));
+        listEntryMap.put(2L, new ListEntry(2, 999999996, "CS300", 1, 000000000));
     }
 
     public List<ListEntry> getAllListEntries() {

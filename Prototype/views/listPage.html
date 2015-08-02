@@ -1,0 +1,57 @@
+<!-- Table demo -->
+<div class="box-table">
+
+
+    {{helpListEntries}}
+
+    <table>
+
+        <thead>
+            <th>#</th>
+            <th>Name</th>
+            <th>Course</th>
+            <th>Tutor Assigned</th>
+            <th>Time</th>
+        </thead>
+
+
+        <tr ng-repeat="listEntry in helpListEntries">
+            <td>{{ listEntry.entryId}}</td>
+            <td>{{ listEntry.studentObject.name }}</td>
+            <td>{{ listEntry.course }}</td>
+            <td>{{ listEntry.tutorObject.name }}</td>
+            <td>{{ listEntry.date | date : 'short' }}</td>
+        </tr>
+
+
+    </table>
+
+</div>
+
+
+<div>
+    <form novalidate class="simple-form">
+        StudentID: <input type="text" ng-model="newEntry.studentId" /><br />
+        Course: <input type="text" ng-model="newEntry.course" /><br />
+        Tutor: <input type="text" ng-model="newEntry.tutor" /><br />
+    </form>
+
+</div>
+
+<a class="kbutton"> form = {{newEntry | json}}</a>
+<br/>
+
+
+<button style="float: right" class="kbutton" type="button" ng-click="postListEntry(newEntry.studentId,newEntry.course,newEntry.tutor)"> TEST POST </button>
+<br/>
+<br/>
+<br/>
+
+
+<button style="float: right" class="kbutton" type="button" ng-click="deleteListEntry(entryToDelete)"> TEST DELETE for {{entryToDelete}}</button>
+<form style ="float: right" novalidate class="simple-form">
+    Delete Entry: <input type="text" ng-model="entryToDelete" /><br />
+</form>
+<!--
+<button class="kbutton" type="button" ng-click="getStudent(999999993)"> TEST GET STUDENT </button>
+-->
