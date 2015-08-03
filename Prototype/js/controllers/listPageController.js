@@ -17,6 +17,12 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
     };
 
 
+    $scope.getStudentName = function(studentId) {
+        entities.getStudent(studentId).then(function(result){
+            $scope.newEntry.studentObject = result.data.student;
+        });
+    };
+
     $scope.updateHelpList = function() {
 
         helpList.getHelpList().then(function (result) {
@@ -80,7 +86,7 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
     $scope.aSyncGetStudent = function(index, hlEntries, callback){
         var tID = hlEntries[index].tuteeId;
 
-        entities.getStudent(index, tID).then(function(result){
+        entities.getStudent(tID).then(function(result){
             hlEntries[index].studentObject = result.data.student;
         });
         callback();
@@ -103,7 +109,7 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
         var text = '{"listEntry":{"course":"' + courseNum + '","date":"' + newDate + '","location":"' + location + '","tuteeId":'+ tuteeId +',"tutorId":' + tutorId + '}}';
 
         console.log(text);
-        helpList.postHelpList(text).then($scope.updateHelpList());
+        helpList.postHelpList(text).then($scope.reloadPage());
 
 
     };

@@ -1,7 +1,17 @@
 
 <div class="text-center">
-    <span class="glyphicon glyphicon-heart"></span>
     <h3>Confirm Entry</h3>
 
-    <button type="submit" class="btn btn-danger">Submit</button>
+    <h5> Name: {{ newEntry.studentObject.name }}</h5>
+    <h6> Course: {{ newEntry.course }}</h6>
+    <h6> Location: {{ newEntry.location }}</h6>
+
+    <a class="kbutton" ng-click="postListEntry(newEntry.studentId,newEntry.course,newEntry.tutor, newEntry.location)" ui-sref="listPage">
+        Submit <span class="glyphicon glyphicon-ok-circle"></span>
+    </a>
+
+    <br/>
+    <a ui-sref="listPage" class="kbutton">
+        Cancel <span class="glyphicon glyphicon-remove-circle"></span>
+    </a>
 </div>

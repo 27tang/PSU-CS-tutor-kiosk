@@ -37,6 +37,7 @@ body {
 }
     .fontStyle:hover {
         animation: blur .75s ease-out;
+        text-decoration: none;
     }
 
 
@@ -82,6 +83,7 @@ input {
     font-size: 30px;
     text-shadow: 2px 2px 9px #005399;
     animation:blur .75s ease-out;
+    text-decoration: none;
 
 }
 
@@ -170,21 +172,21 @@ td {
 /* left and right added to ensure full width */
 #form-views.ng-enter,
 #form-views.ng-leave      { position:absolute; left:30px; right:30px;
-    transition:0.5s all ease; -moz-transition:0.5s all ease; -webkit-transition:0.5s all ease;
+    transition:0.7s all ease; -moz-transition:0.7s all ease; -webkit-transition:0.7s all ease;
 }
 
 /* enter animation */
 #form-views.ng-enter            {
-    -webkit-animation:slideInRight 0.5s both ease;
-    -moz-animation:slideInRight 0.5s both ease;
-    animation:slideInRight 0.5s both ease;
+    -webkit-animation:slideInRight 0.7s both ease;
+    -moz-animation:slideInRight 0.7s both ease;
+    animation:slideInRight 0.7s both ease;
 }
 
 /* leave animation */
 #form-views.ng-leave            {
-    -webkit-animation:slideOutLeft 0.5s both ease;
-    -moz-animation:slideOutLeft 0.5s both ease;
-    animation:slideOutLeft 0.5s both ease;
+    -webkit-animation:slideOutLeft 0.7s both ease;
+    -moz-animation:slideOutLeft 0.7s both ease;
+    animation:slideOutLeft 0.7s both ease;
 }
 
 /* ANIMATIONS

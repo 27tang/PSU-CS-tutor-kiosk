@@ -26,7 +26,7 @@
 
 </div>
 
-
+<!--
 <div>
     <form novalidate class="simple-form">
         StudentID: <input type="text" ng-model="newEntry.studentId" /><br />
@@ -50,12 +50,15 @@
 <form style ="float: right" novalidate class="simple-form">
     Delete Entry: <input type="text" ng-model="entryToDelete" /><br />
 </form>
+
+-->
+
 <!--
 <button class="kbutton" type="button" ng-click="getStudent(999999993)"> TEST GET STUDENT </button>
 -->
-
-<li style="padding: 20px;">
-    <a style="align-content: center" ui-sref=".newEntryForm.selectCourse" class="btn kbutton">LAUNCH FORM </a>
-</li>
-
-<div ui-view></div>
+<br/><br/>
+<div>
+StudentID: <input type="text" ng-model="newEntry.studentId" /><br /> <br/>
+    <a style="align-content: center" ui-sref=".newEntryForm.selectCourse" class="btn kbutton" ng-click="getStudentName(newEntry.studentId)">LAUNCH FORM </a>
+</div>
+<div style="position:   fixed; top: 15%; width: 100%;  " ui-view></div>

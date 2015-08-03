@@ -1,31 +1,37 @@
 <div class="row">
-    <div style="background-color: rgba(255,255,255,0.05); border: 2px solid blueviolet" class="col-sm-8 col-sm-offset-2">
+    <div style="background-color: rgba(0, 0, 0, 0.95); border: 2px solid blueviolet" class="col-sm-8 col-sm-offset-2">
 
-        <div id="form-container">
+        <div>
 
             <div class="page-header text-center">
                 <h2>NEW LIST ENTRY</h2>
 
-                <!-- the links to our nested states using relative paths -->
-                <!-- add the active class if the state matches our ui-sref -->
                 <div id="status-buttons" class="text-center">
                     <a ui-sref-active="active" ui-sref=".selectCourse"><span>1</span> Select Course</a>
                     <a ui-sref-active="active" ui-sref=".selectLocation"><span>2</span> Select Location</a>
                     <a ui-sref-active="active" ui-sref=".confirm"><span>3</span> Confirm</a>
                 </div>
+                <br/>
+
+                <h3> {{newEntry.studentObject.name}}</h3>
             </div>
 
-            <!-- use ng-submit to catch the form submission and use our Angular function -->
-            <form id="signup-form" ng-submit="postListEntry(newEntry.studentId,newEntry.course,newEntry.tutor, newEntry.location)">
-                <!-- our nested state views will be injected here -->
+
+
+
+            <form id="signup-form">
                 <div id="form-views" ui-view></div>
             </form>
 
+
+            <a class="fontStyle" style="position: absolute; top: 5%; font-size: 50px; color:rgba(192, 0, 12, 0.05);text-shadow: 5px 5px 13px #005399;"> Name: {{newEntry.studentObject.name}}</a>
+            <a class="fontStyle" style="position: absolute; top: 25%; font-size: 50px; color:rgba(192, 0, 12, 0.05);text-shadow: 5px 5px 13px #005399;"> Course: {{newEntry.course}}</a>
+            <a class="fontStyle" style="position: absolute; top: 45%; font-size: 50px; color:rgba(192, 0, 12, 0.04);text-shadow: 5px 5px 13px #005399;"> Location: {{newEntry.location}}</a>
         </div>
 
         <!-- show our formData as it is being typed -->
 
-   <a class="kbutton"> form = {{newEntry | json}}</a>
+
     </div>
 </div>
 

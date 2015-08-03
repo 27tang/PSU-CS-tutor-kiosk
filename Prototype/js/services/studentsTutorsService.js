@@ -11,7 +11,7 @@ app.factory('entities', function($http){
                 })
         },
 
-        getStudent: function (listIndex, studentId) {
+        getStudent: function (studentId) {
 
             return $http({method: 'GET', url: 'http://localhost:8080/students/'+studentId}).
                 success(function(data, status, headers, config) {
