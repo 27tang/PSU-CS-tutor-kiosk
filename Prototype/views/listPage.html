@@ -1,6 +1,8 @@
 <div class="box-table">
 
-    <table>
+    <div style="width: 840px; height:450px; margin: auto; background-color: rgba(255,255,255,0.05);
+        overflow: auto; border: 3px solid rgba(0, 83, 153, 0.2);">
+    <table style="width: 800px">
 
         <thead>
             <th>#</th>
@@ -23,7 +25,7 @@
 
 
     </table>
-
+    </div>
 </div>
 
 <!--
@@ -61,4 +63,4 @@
 StudentID: <input type="text" ng-model="newEntry.studentId" /><br /> <br/>
     <a style="align-content: center" ui-sref=".newEntryForm.selectCourse" class="btn kbutton" ng-click="getStudentName(newEntry.studentId)">LAUNCH FORM </a>
 </div>
-<div style="position:   fixed; top: 15%; width: 100%;  " ui-view></div>
+<div style="position:   fixed; top: 10%; width: 100%;  " ui-view></div>

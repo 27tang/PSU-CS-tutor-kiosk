@@ -109,7 +109,10 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
         var text = '{"listEntry":{"course":"' + courseNum + '","date":"' + newDate + '","location":"' + location + '","tuteeId":'+ tuteeId +',"tutorId":' + tutorId + '}}';
 
         console.log(text);
-        helpList.postHelpList(text).then($scope.reloadPage());
+        helpList.postHelpList(text).then(function(result){
+            $scope.reloadPage();
+        });
+
 
 
     };

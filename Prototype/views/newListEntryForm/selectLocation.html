@@ -1,17 +1,22 @@
 <div class="text-center">
     <form novalidate class="simple-form">
         <label class="fontStyle" style="text-align: center; margin:auto; font-size: 18px;">Enter Location - (Will have button selection later)</label> <br/>
+        <br/>
         <input type="text" class="fontStyle" style="text-align: center;width: 200px; height: 60px;" ng-model="newEntry.location">
     </form>
 </div>
 
+<br/><br/><br/>
 
 <div class="text-center">
-    <a ui-sref="listPage.newEntryForm.confirm" class="kbutton">
-        Next Section <span class="glyphicon glyphicon-circle-arrow-right"></span>
+    <a ui-sref="listPage.newEntryForm.selectCourse" class="kbutton" style="float: left; background-color: transparent">
+        <span class="glyphicon glyphicon-circle-arrow-left"></span> Previous
     </a>
-    <br/>
-    <a ui-sref="listPage" class="kbutton">
+    <a ui-sref="listPage.newEntryForm.confirm" class="kbutton" style="float: right; background-color: transparent">
+        Next <span class="glyphicon glyphicon-circle-arrow-right"></span>
+    </a>
+    <br/> <br/>
+    <a ui-sref="listPage" class="kbutton"style="float: bottom; background-color: transparent">
         Cancel <span class="glyphicon glyphicon-remove-circle"></span>
     </a>
 </div>

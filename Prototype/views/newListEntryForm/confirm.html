@@ -6,12 +6,17 @@
     <h6> Course: {{ newEntry.course }}</h6>
     <h6> Location: {{ newEntry.location }}</h6>
 
-    <a class="kbutton" ng-click="postListEntry(newEntry.studentId,newEntry.course,newEntry.tutor, newEntry.location)" ui-sref="listPage">
+    <br/><br/><br/>
+    <a ui-sref="listPage.newEntryForm.selectLocation" class="kbutton" style="float: left; background-color: transparent">
+        <span class="glyphicon glyphicon-circle-arrow-left"></span> Previous
+
+    <a class="kbutton" ng-click="postListEntry(newEntry.studentId,newEntry.course,newEntry.tutor, newEntry.location)"
+       ui-sref="listPage" style="float: right; background-color: transparent">
         Submit <span class="glyphicon glyphicon-ok-circle"></span>
     </a>
 
-    <br/>
-    <a ui-sref="listPage" class="kbutton">
-        Cancel <span class="glyphicon glyphicon-remove-circle"></span>
-    </a>
+    <br/><br/>
+        <a ui-sref="listPage" class="kbutton"style="float: bottom; background-color: transparent">
+            Cancel <span class="glyphicon glyphicon-remove-circle"></span>
+        </a>
 </div>
