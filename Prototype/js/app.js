@@ -1,4 +1,4 @@
-var app = angular.module('kioskApp', ['ui.router']);
+var app = angular.module('kioskApp', ['ngAnimate', 'ui.router']);
 
 app.config(function($httpProvider){
     //enable cross domain calls:
@@ -23,13 +23,38 @@ app.config(function($stateProvider, $urlRouterProvider){
             controller: 'tutorLoginController'
         })
 
+
+
+
         .state('listPage', {
             url: '/listPage',
             templateUrl: 'views/listPage.html',
             controller: 'listPageController'
         })
 
-});
+        //nested view of listpage - multi-step form for creating a new help list entry
+            .state('listPage.newEntryForm',{
+
+                url: '/newListEntryForm',
+                templateUrl: 'views/newListEntryForm/newEntryForm.html'
+            })
+
+                    .state('listPage.newEntryForm.selectCourse',{
+                        url: '/selectCourse',
+                        templateUrl: 'views/newListEntryForm/selectCourse.html'
+
+                    })
+                    .state('listPage.newEntryForm.selectLocation',{
+                        url: '/selectLocation',
+                        templateUrl: 'views/newListEntryForm/selectLocation.html'
+
+                    })
+                    .state('listPage.newEntryForm.confirm',{
+                        url: '/confirm',
+                        templateUrl: 'views/newListEntryForm/confirm.html'
+
+                    })
+            });
 
 
 

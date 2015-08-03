@@ -1,8 +1,4 @@
-<!-- Table demo -->
 <div class="box-table">
-
-
-    {{helpListEntries}}
 
     <table>
 
@@ -11,6 +7,7 @@
             <th>Name</th>
             <th>Course</th>
             <th>Tutor Assigned</th>
+            <th>Location</th>
             <th>Time</th>
         </thead>
 
@@ -20,6 +17,7 @@
             <td>{{ listEntry.studentObject.name }}</td>
             <td>{{ listEntry.course }}</td>
             <td>{{ listEntry.tutorObject.name }}</td>
+            <td>{{ listEntry.location }}</td>
             <td>{{ listEntry.date | date : 'short' }}</td>
         </tr>
 
@@ -55,3 +53,9 @@
 <!--
 <button class="kbutton" type="button" ng-click="getStudent(999999993)"> TEST GET STUDENT </button>
 -->
+
+<li style="padding: 20px;">
+    <a style="align-content: center" ui-sref=".newEntryForm.selectCourse" class="btn kbutton">LAUNCH FORM </a>
+</li>
+
+<div ui-view></div>

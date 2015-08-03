@@ -1,24 +1,13 @@
 app.controller('listPageController', ['$state','$scope', 'helpList', 'entities', '$http', function($state, $scope, helpList, entities) {
 
 
-    $scope.newEntry = {
-
-    };
-
-    $scope.postListEntry = function (tuteeId, courseNum, tutorId) {
-
-        var date = new Date().toJSON();
-        var newDate = date.substr(0,23) + '-07:00';
-        var text = '{"listEntry":{"course":"' + courseNum + '","date":"' + newDate + '","entryId":1,"location":4,"tuteeId":'+ tuteeId +',"tutorId":' + tutorId + '}}';
-
-        console.log(text);
-        helpList.postHelpList(text).then($scope.reloadPage());
+    $scope.newEntry = {};
 
 
-    };
 
     $scope.reloadPage = function(){
         $state.go($state.$current, null, { reload: true });
+        console.log("I'm reeloaded!")
     };
 
     $scope.entryToDelete = 0;
@@ -27,29 +16,36 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
         helpList.deleteHelpListEntry(entryId);
     };
 
-    helpList.getHelpList().then(function(result) {
-         $scope.helpListEntries = result.data.listEntry;
-         var length = Object.keys($scope.helpListEntries).length;
 
-         $scope.aSyncLoop(length, function(loop, index){
-             $scope.aSyncGetStudent(index, $scope.helpListEntries, function(result){
-                 loop.next();
-             })
-         },
-         function() {
-             console.log("Async student to helpList load complete.");
-         });
+    $scope.updateHelpList = function() {
 
-        $scope.aSyncLoop(length, function(loop, index){
-                $scope.aSyncGetTutor(index, $scope.helpListEntries, function(result){
-                    loop.next();
+        helpList.getHelpList().then(function (result) {
+            $scope.helpListEntries = result.data.listEntry;
+            var length = Object.keys($scope.helpListEntries).length;
+
+            $scope.aSyncLoop(length, function (loop, index) {
+                    $scope.aSyncGetStudent(index, $scope.helpListEntries, function (result) {
+                        loop.next();
+                    })
+                },
+                function () {
+                    console.log("Async student to helpList load complete.");
+                });
+
+            $scope.aSyncLoop(length, function (loop, index) {
+                    $scope.aSyncGetTutor(index, $scope.helpListEntries, function (result) {
+                        loop.next();
+                    })
+                },
+                function () {
+                    console.log("Async tutors to helpList load complete.")
+
                 })
-            },
-            function() {
-                console.log("Async tutors to helpList load complete.");
-            })
-     });
+        });
+    }
+    $scope.updateHelpList(); //initial call to load helpList
 
+    //Asynchronous Loop used to populate listEntries' student and tutor objs
     $scope.aSyncLoop = function (iterations, func, callback) {
         var index = 0;
         var done = false;
@@ -80,6 +76,7 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
         return loop;
     };
 
+    //adds a student object to each help list entry based on the student id in the entry
     $scope.aSyncGetStudent = function(index, hlEntries, callback){
         var tID = hlEntries[index].tuteeId;
 
@@ -89,6 +86,7 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
         callback();
     };
 
+    //add's a tutor object to each help list entry based on the student id in the entry
     $scope.aSyncGetTutor = function(index, hlEntries, callback){
         var tID = hlEntries[index].tutorId;
 
@@ -97,6 +95,21 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
         });
         callback();
     };
+
+    $scope.postListEntry = function (tuteeId, courseNum, tutorId, location) {
+
+        var date = new Date().toJSON();
+        var newDate = date.substr(0,23) + '-07:00';
+        var text = '{"listEntry":{"course":"' + courseNum + '","date":"' + newDate + '","location":"' + location + '","tuteeId":'+ tuteeId +',"tutorId":' + tutorId + '}}';
+
+        console.log(text);
+        helpList.postHelpList(text).then($scope.updateHelpList());
+
+
+    };
+
+
+
     /* //non-working student getter - results in scramblage
      helpList.getHelpList().then(function (result) {
      $scope.helpListEntries = result.data.listEntry;

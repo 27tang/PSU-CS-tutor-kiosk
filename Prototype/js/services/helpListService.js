@@ -17,6 +17,7 @@ app.factory('helpList', function($http) {
         postHelpList: function(newListEntry) {
             return $http({method: 'POST', url: 'http://localhost:8080/helplist', data: newListEntry})
                 .success(function(data, status, headers, config){
+                    console.log("Post Help List Entry Success");
                     return data;
                 })
                 .error(function(data, status, headers, config){
