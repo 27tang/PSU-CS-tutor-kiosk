@@ -27,7 +27,7 @@ app.factory('helpList', function($http) {
         },
 
         putHelpListEntry: function(entryId, editedEntry) {
-            return $http({method: 'PUT', url: 'http//localhost:8080/helpList/' + entryId, data: editedEntry})
+            return $http({method: 'PUT', url: 'http://localhost:8080/helplist/' + entryId, data: editedEntry})
                 .success(function(data, status, headers, config){
                     return data;
             })

@@ -50,6 +50,8 @@ public class HelpListResource {
     @PUT
     @Path("/{entryId}")
     public ListEntry updateListEntry(ListEntry listEntry) {
+
+        System.out.println("PUT happened");
         return helpListService.updateListEntry(listEntry);
     }
 

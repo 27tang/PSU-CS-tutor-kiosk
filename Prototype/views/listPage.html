@@ -58,9 +58,12 @@
 <!--
 <button class="kbutton" type="button" ng-click="getStudent(999999993)"> TEST GET STUDENT </button>
 -->
-<br/><br/>
-<div>
-StudentID: <input type="text" ng-model="newEntry.studentId" /><br /> <br/>
+<div style="margin: auto; padding: 20px">
+StudentID: <input type="text" ng-model="newEntry.studentId" style="border: 1px solid darkslategrey"/><br />
     <a style="align-content: center" ui-sref=".newEntryForm.selectCourse" class="btn kbutton" ng-click="getStudentName(newEntry.studentId)">LAUNCH FORM </a>
+    <br/><br/>
+    Entry to pick: <input type="text" ng-model="tutorAssignment.entryId" style="border: 1px solid darkslategrey"/> <br />
+    <a class="btn kbutton" ng-click="putTutor(tutorAssignment.tID)" >TEST PUT</a>
+    <a> TEST ASSIGN {{tutorAssignment.tID}} to entry: {{tutorAssignment.entryId}}(http Put)</a> <br/>
 </div>
 <div style="position:   fixed; top: 10%; width: 100%;  " ui-view></div>

@@ -2,8 +2,10 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
 
 
     $scope.newEntry = {};
-
-
+    $scope.tutorAssignment = {
+        tID: 900996708,
+        entryId: 0
+    };
 
     $scope.reloadPage = function(){
         $state.go($state.$current, null, { reload: true });
@@ -16,39 +18,34 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
         helpList.deleteHelpListEntry(entryId);
     };
 
-
     $scope.getStudentName = function(studentId) {
         entities.getStudent(studentId).then(function(result){
             $scope.newEntry.studentObject = result.data.student;
         });
     };
 
-    $scope.updateHelpList = function() {
 
+    $scope.updateHelpList = function() {
         helpList.getHelpList().then(function (result) {
             $scope.helpListEntries = result.data.listEntry;
             var length = Object.keys($scope.helpListEntries).length;
 
-            $scope.aSyncLoop(length, function (loop, index) {
-                    $scope.aSyncGetStudent(index, $scope.helpListEntries, function (result) {
-                        loop.next();
-                    })
+            $scope.aSyncLoop(length, function (index) {
+                    $scope.aSyncGetStudent(index, $scope.helpListEntries)
                 },
                 function () {
                     console.log("Async student to helpList load complete.");
                 });
 
-            $scope.aSyncLoop(length, function (loop, index) {
-                    $scope.aSyncGetTutor(index, $scope.helpListEntries, function (result) {
-                        loop.next();
-                    })
+            $scope.aSyncLoop(length, function (index) {
+                    $scope.aSyncGetTutor(index, $scope.helpListEntries)
                 },
                 function () {
                     console.log("Async tutors to helpList load complete.")
 
                 })
         });
-    }
+    };
     $scope.updateHelpList(); //initial call to load helpList
 
     //Asynchronous Loop used to populate listEntries' student and tutor objs
@@ -62,7 +59,8 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
                 }
                 if (index < iterations) {
                     index++;
-                    func(loop, index-1);
+                    func(index-1);
+                    loop.next();
                 } else {
                     done = true;
                     callback();
@@ -79,28 +77,28 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
             }
         };
         loop.next();
-        return loop;
+       // return loop;
     };
 
     //adds a student object to each help list entry based on the student id in the entry
-    $scope.aSyncGetStudent = function(index, hlEntries, callback){
+    $scope.aSyncGetStudent = function(index, hlEntries){
         var tID = hlEntries[index].tuteeId;
 
         entities.getStudent(tID).then(function(result){
             hlEntries[index].studentObject = result.data.student;
         });
-        callback();
     };
 
     //add's a tutor object to each help list entry based on the student id in the entry
-    $scope.aSyncGetTutor = function(index, hlEntries, callback){
+    $scope.aSyncGetTutor = function(index, hlEntries){
         var tID = hlEntries[index].tutorId;
 
         entities.getTutor(index, tID).then(function(result){
             hlEntries[index].tutorObject = result.data.tutor;
         });
-        callback();
     };
+
+
 
     $scope.postListEntry = function (tuteeId, courseNum, tutorId, location) {
 
@@ -112,14 +110,30 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
         helpList.postHelpList(text).then(function(result){
             $scope.reloadPage();
         });
+    };
 
 
+    $scope.putTutor = function(){
+        var entryId = $scope.tutorAssignment.entryId -1;
+        var entry = $scope.helpListEntries[entryId];
+        entry.tutorId = $scope.tutorAssignment.tID;
+
+
+        console.log(entry);
+
+        var text = '{"listEntry":{"course":"' + entry.course +  '","location":"'
+            + entry.location + '","tuteeId":'+ entry.tuteeId +',"tutorId":' + entry.tutorId + '}}';
+        console.log(text);
+            helpList.putHelpListEntry(entryId + 1, text).then(function(result){
+                $scope.reloadPage();
+            })
 
     };
 
 
 
     /* //non-working student getter - results in scramblage
+
      helpList.getHelpList().then(function (result) {
      $scope.helpListEntries = result.data.listEntry;
      var inc = 0;
