@@ -3,7 +3,7 @@ var app = angular.module('kioskApp', ['ngAnimate', 'ui.router']);
 app.config(function($httpProvider){
     //enable cross domain calls:
     $httpProvider.defaults.useXDomain = true;
-  //  delete $httpProvider.defaults.headers.common['X-Requested-With'];
+  //      delete $httpProvider.defaults.headers.common['X-Requested-With'];
 });
 
 app.config(function($stateProvider, $urlRouterProvider){

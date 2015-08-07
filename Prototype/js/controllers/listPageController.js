@@ -27,9 +27,12 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
 
     $scope.updateHelpList = function() {
         helpList.getHelpList().then(function (result) {
-            $scope.helpListEntries = result.data.listEntry;
-            var length = Object.keys($scope.helpListEntries).length;
+            $scope.helpListEntries = result.data; //.data.listEntry;
 
+            console.log($scope.helpListEntries);
+
+            var length = Object.keys($scope.helpListEntries).length;
+/*
             $scope.aSyncLoop(length, function (index) {
                     $scope.aSyncGetStudent(index, $scope.helpListEntries)
                 },
@@ -44,7 +47,9 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
                     console.log("Async tutors to helpList load complete.")
 
                 })
+*/
         });
+
     };
     $scope.updateHelpList(); //initial call to load helpList
 
