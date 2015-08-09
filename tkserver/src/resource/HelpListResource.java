@@ -19,7 +19,7 @@ import java.util.List;
 public class HelpListResource extends OptionsResource{
 
     HelpListService helpListService = new HelpListService();
-    
+
 
     @GET
     public Response getHelpListEntries(){
@@ -89,9 +89,6 @@ public class HelpListResource extends OptionsResource{
 
         System.out.println("PUT happened");
         ListEntry updatedEntry = helpListService.updateListEntry(listEntry);
-        System.out.println(listEntry.getTutorId());
-        System.out.println("ENTRY ID: " + listEntry.getEntryId());
-      //  System.out.println(updatedEntry.getTutorId());
         return Response.status(200)
                 .entity(new Gson().toJson(updatedEntry))
                 .header("Access-Control-Allow-Origin", "*")
@@ -113,9 +110,17 @@ public class HelpListResource extends OptionsResource{
 
     @DELETE
     @Path("/{entryId}")
-    public ListEntry deleteListEntry(){
+    public Response deleteListEntry(@PathParam("entryId") long entryId){
         System.out.println("WENT INTO DELETE FOR LISTENTRY: " + 1);
-        return helpListService.removeListEntry(1);
+        ListEntry removedEntry = helpListService.removeListEntry(entryId);
+        return Response.status(200)
+                .entity(new Gson().toJson(removedEntry))
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+                .header("Access-Control-Allow-Credentials", "true")
+                .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                .header("Access-Control-Max-Age", "1209600")
+                .build();
     }
 
 }

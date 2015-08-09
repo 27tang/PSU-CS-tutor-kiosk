@@ -39,7 +39,7 @@ app.factory('helpList', function($http) {
         },
 
         deleteHelpListEntry: function(entryId) {
-            return $http({method: 'DELETE', url: 'http://localhost:8080/helpList/' + entryId})
+            return $http({method: 'DELETE', url: 'http://localhost:8080/helplist/' + entryId})
                 .success(function(data, status, headers, config){
                     return data;
                 })

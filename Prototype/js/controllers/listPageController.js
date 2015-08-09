@@ -4,7 +4,8 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
     $scope.newEntry = {};
     $scope.tutorAssignment = {
         tID: 900996708,
-        entryId: 0
+        entryId: 0.,
+        dId: 0
     };
 
     $scope.reloadPage = function(){
@@ -122,21 +123,20 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
         var entryId = $scope.tutorAssignment.entryId -1;
         var entry = $scope.helpListEntries[entryId];
         entry.tutorId = $scope.tutorAssignment.tID;
-
-
-        console.log(entry);
-
         var text = '{"listEntry":{"course":"' + entry.course +  '","location":"'
             + entry.location + '","tuteeId":'+ entry.tuteeId +',"entryId":'+ $scope.tutorAssignment.entryId +',"tutorId":' + entry.tutorId + '}}';
-        console.log(text);
-        console.log("ENTRY ID FOR PUT: !!!!");
-        console.log(entryId+1);
             helpList.putHelpListEntry(entryId + 1, text).then(function(result){
                 $scope.reloadPage();
             })
 
     };
 
+    $scope.deleteEntry = function(entryId){
+        console.log(entryId);
+        helpList.deleteHelpListEntry(entryId).then(function(result){
+            $scope.reloadPage();
+        });
+    };
 
 
     /* //non-working student getter - results in scramblage

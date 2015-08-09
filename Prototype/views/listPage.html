@@ -68,4 +68,9 @@ StudentID: <input type="text" ng-model="newEntry.studentId" style="border: 1px s
     <a class="btn kbutton" ng-click="putTutor(tutorAssignment.tID)" >TEST PUT</a>
     <a> TEST ASSIGN {{tutorAssignment.tID}} to entry: {{tutorAssignment.entryId}}(http Put)</a> <br/>
 </div>
+
+Entry to pick: <input type="text" ng-model="tutorAssignment.dId" style="border: 1px solid darkslategrey"/> <br />
+<a class="btn kbutton" ng-click="deleteEntry(tutorAssignment.dId)" >TEST DELETE</a>
+<a> TEST DELETE {{tutorAssignment.dId}} (http DELETE)</a> <br/>
+</div>
 <div style="position:   fixed; top: 10%; width: 100%;  " ui-view></div>
