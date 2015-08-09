@@ -44,9 +44,13 @@ public class HelpListService {
 
     public ListEntry updateListEntry(ListEntry listEntry) {
         if(listEntry.getEntryId() <= 0) {
+            System.out.println("GOT IN THE NULL" + listEntry.getEntryId());
             return null;
         }
-        return listEntryMap.put(listEntry.getEntryId(), listEntry);
+        ListEntry updatedEntry = listEntryMap.put(listEntry.getEntryId(), listEntry);
+        System.out.println(listEntry.getEntryId());
+        System.out.println(listEntry.getTutorId());
+        return updatedEntry;
     }
 
     public ListEntry removeListEntry(long id) {

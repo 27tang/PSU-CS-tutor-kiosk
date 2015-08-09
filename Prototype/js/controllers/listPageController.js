@@ -32,7 +32,7 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
             console.log($scope.helpListEntries);
 
             var length = Object.keys($scope.helpListEntries).length;
-/*
+
             $scope.aSyncLoop(length, function (index) {
                     $scope.aSyncGetStudent(index, $scope.helpListEntries)
                 },
@@ -47,7 +47,7 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
                     console.log("Async tutors to helpList load complete.")
 
                 })
-*/
+
         });
 
     };
@@ -127,8 +127,10 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
         console.log(entry);
 
         var text = '{"listEntry":{"course":"' + entry.course +  '","location":"'
-            + entry.location + '","tuteeId":'+ entry.tuteeId +',"tutorId":' + entry.tutorId + '}}';
+            + entry.location + '","tuteeId":'+ entry.tuteeId +',"entryId":'+ $scope.tutorAssignment.entryId +',"tutorId":' + entry.tutorId + '}}';
         console.log(text);
+        console.log("ENTRY ID FOR PUT: !!!!");
+        console.log(entryId+1);
             helpList.putHelpListEntry(entryId + 1, text).then(function(result){
                 $scope.reloadPage();
             })

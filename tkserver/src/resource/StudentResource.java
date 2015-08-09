@@ -21,6 +21,8 @@ public class StudentResource {
         return studentsService.getAllStudents();
     }
 
+
+
     @GET
     @Path("/{studentId}")
     public Student getStudent(@PathParam("studentId") long studentId) {

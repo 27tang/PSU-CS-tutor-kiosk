@@ -27,6 +27,7 @@ app.factory('helpList', function($http) {
         },
 
         putHelpListEntry: function(entryId, editedEntry) {
+            console.log("ENTRY ID WHEN IN HTTPCALL: " + entryId);
             return $http({method: 'PUT', url: 'http://localhost:8080/helplist/' + entryId, data: editedEntry})
                 .success(function(data, status, headers, config){
                     return data;

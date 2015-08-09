@@ -1,10 +1,13 @@
 package resource;
 
+import com.google.gson.Gson;
 import model.lists.HelpList;
 import model.lists.ListEntry;
 import service.HelpListService;
 
+import javax.annotation.security.PermitAll;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 /**
@@ -26,33 +29,93 @@ public class HelpListResource {
     }
 */
 
+
     @GET
-    public List<ListEntry> getHelpListEntries(){
-        return helpListService.getAllListEntries();
+    public Response getHelpListEntries(){
+        List<ListEntry> theList = helpListService.getAllListEntries();
+
+        System.out.println("GOT TO TEST PLACE");
+        return Response.status(Response.Status.ACCEPTED)
+                .entity(new Gson().toJson(theList))
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+                .header("Access-Control-Allow-Credentials", "true")
+                .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                .header("Access-Control-Max-Age", "1209600")
+                .build();
     }
 
     @GET
     @Path("/{entryId}")
-    public ListEntry getHelpListEntry(@PathParam("entryId") long entryId){
-        return helpListService.getListEntry(entryId);
+    public Response getHelpListEntry(@PathParam("entryId") long entryId){
+        //List<ListEntry> theList = helpListService.getAllListEntries();
+
+        //System.out.println("GOT TO TEST PLACE");
+        return Response.status(Response.Status.ACCEPTED)
+                .entity(new Gson().toJson(helpListService.getListEntry(entryId)))
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+                .header("Access-Control-Allow-Credentials", "true")
+                .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                .header("Access-Control-Max-Age", "1209600")
+                .build();
     }
 
     @POST
-    public ListEntry addListEntry(ListEntry listEntry){
+    public Response addListEntry(ListEntry listEntry){
 
         System.out.println("POST HAPPENED");
-        return helpListService.addListEntry(listEntry);
+        return Response.status(Response.Status.CREATED)
+                .entity(new Gson().toJson(helpListService.addListEntry(listEntry)))
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+                .header("Access-Control-Allow-Credentials", "true")
+                .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                .header("Access-Control-Max-Age", "1209600")
+                .build();
     }
 
 
     //PUT function
 
+    @OPTIONS
+    @Path("/{entryId}")
+    @PermitAll
+    public Response optionsById() {
+        System.out.println("Got to options function");
+        return Response.status(Response.Status.NO_CONTENT)
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+                .header("Access-Control-Allow-Credentials", "true")
+                .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                .header("Access-Control-Max-Age", "1209600")
+                .build();
+    }
+
     @PUT
     @Path("/{entryId}")
-    public ListEntry updateListEntry(ListEntry listEntry) {
+    public Response updateListEntry(ListEntry listEntry) {
 
         System.out.println("PUT happened");
-        return helpListService.updateListEntry(listEntry);
+        ListEntry updatedEntry = helpListService.updateListEntry(listEntry);
+        System.out.println(listEntry.getTutorId());
+        System.out.println("ENTRY ID: " + listEntry.getEntryId());
+      //  System.out.println(updatedEntry.getTutorId());
+        return Response.status(200)
+                .entity(new Gson().toJson(updatedEntry))
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+                .header("Access-Control-Allow-Credentials", "true")
+                .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                .header("Access-Control-Max-Age", "1209600")
+                .build();
+
+
+              /*  Response.status(Response.Status.ACCEPTED)
+                .entity(new Gson().toJson(helpListService.updateListEntry(listEntry)))
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
+                .build(); */
     }
 
     //DELETE
