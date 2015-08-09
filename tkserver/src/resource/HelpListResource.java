@@ -16,19 +16,10 @@ import java.util.List;
 @Path("/helplist")
 @Produces("application/json")
 @Consumes("application/json")
-public class HelpListResource {
+public class HelpListResource extends OptionsResource{
 
     HelpListService helpListService = new HelpListService();
-
-
-/*
-    @GET
-    @Produces("text/plain")
-    public String test(){
-        return "HELLO WORLD???";
-    }
-*/
-
+    
 
     @GET
     public Response getHelpListEntries(){
@@ -77,7 +68,7 @@ public class HelpListResource {
 
 
     //PUT function
-
+/*
     @OPTIONS
     @Path("/{entryId}")
     @PermitAll
@@ -91,7 +82,7 @@ public class HelpListResource {
                 .header("Access-Control-Max-Age", "1209600")
                 .build();
     }
-
+*/
     @PUT
     @Path("/{entryId}")
     public Response updateListEntry(ListEntry listEntry) {
