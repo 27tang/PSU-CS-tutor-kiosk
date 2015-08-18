@@ -1,9 +1,11 @@
 package resource;
 
+import com.google.gson.Gson;
 import model.persons.Student;
 import service.StudentsService;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 /**
@@ -12,7 +14,7 @@ import java.util.List;
 @Path("/students")
 @Produces("application/json")
 @Consumes("application/json")
-public class StudentResource {
+public class StudentResource extends OptionsResource {
 
     private StudentsService studentsService = new StudentsService();
 
@@ -25,8 +27,17 @@ public class StudentResource {
 
     @GET
     @Path("/{studentId}")
-    public Student getStudent(@PathParam("studentId") long studentId) {
-        return studentsService.getStudent(studentId);
+    public Response getStudent(@PathParam("studentId") long studentId) {
+
+        return Response.status(Response.Status.ACCEPTED)
+                .entity(new Gson().toJson(studentsService.getStudent(studentId)))
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+                .header("Access-Control-Allow-Credentials", "true")
+                .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                .header("Access-Control-Max-Age", "1209600")
+                .build();
+
     }
 
     @POST

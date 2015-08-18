@@ -1,9 +1,11 @@
 package resource;
 
+import com.google.gson.Gson;
 import model.persons.Tutor;
 import service.TutorsService;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 /**
@@ -12,7 +14,7 @@ import java.util.List;
 @Path("/tutors")
 @Produces("application/json")
 @Consumes("application/json")
-public class TutorResource {
+public class TutorResource extends OptionsResource {
 
     private TutorsService tutorsService = new TutorsService();
 
@@ -23,8 +25,15 @@ public class TutorResource {
 
     @GET
     @Path("/{tutorId}")
-    public Tutor getTutor(@PathParam("tutorId") long tutorId) {
-        return tutorsService.getTutor(tutorId);
+    public Response getTutor(@PathParam("tutorId") long tutorId) {
+        return Response.status(Response.Status.ACCEPTED)
+                .entity(new Gson().toJson(tutorsService.getTutor(tutorId)))
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+                .header("Access-Control-Allow-Credentials", "true")
+                .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                .header("Access-Control-Max-Age", "1209600")
+                .build();
     }
 
     @PUT

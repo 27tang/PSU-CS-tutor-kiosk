@@ -21,7 +21,8 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
 
     $scope.getStudentName = function(studentId) {
         entities.getStudent(studentId).then(function(result){
-            $scope.newEntry.studentObject = result.data.student;
+            $scope.newEntry.studentObject = result.data;
+            console.log($scope.newEntry.studentObject);
         });
     };
 
@@ -91,7 +92,7 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
         var tID = hlEntries[index].tuteeId;
 
         entities.getStudent(tID).then(function(result){
-            hlEntries[index].studentObject = result.data.student;
+            hlEntries[index].studentObject = result.data;
         });
     };
 
@@ -100,7 +101,7 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
         var tID = hlEntries[index].tutorId;
 
         entities.getTutor(index, tID).then(function(result){
-            hlEntries[index].tutorObject = result.data.tutor;
+            hlEntries[index].tutorObject = result.data;
         });
     };
 

@@ -20,7 +20,6 @@ public class HelpListResource extends OptionsResource{
 
     HelpListService helpListService = new HelpListService();
 
-
     @GET
     public Response getHelpListEntries(){
         List<ListEntry> theList = helpListService.getAllListEntries();
@@ -39,9 +38,7 @@ public class HelpListResource extends OptionsResource{
     @GET
     @Path("/{entryId}")
     public Response getHelpListEntry(@PathParam("entryId") long entryId){
-        //List<ListEntry> theList = helpListService.getAllListEntries();
 
-        //System.out.println("GOT TO TEST PLACE");
         return Response.status(Response.Status.ACCEPTED)
                 .entity(new Gson().toJson(helpListService.getListEntry(entryId)))
                 .header("Access-Control-Allow-Origin", "*")
@@ -67,22 +64,6 @@ public class HelpListResource extends OptionsResource{
     }
 
 
-    //PUT function
-/*
-    @OPTIONS
-    @Path("/{entryId}")
-    @PermitAll
-    public Response optionsById() {
-        System.out.println("Got to options function");
-        return Response.status(Response.Status.NO_CONTENT)
-                .header("Access-Control-Allow-Origin", "*")
-                .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
-                .header("Access-Control-Allow-Credentials", "true")
-                .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
-                .header("Access-Control-Max-Age", "1209600")
-                .build();
-    }
-*/
     @PUT
     @Path("/{entryId}")
     public Response updateListEntry(ListEntry listEntry) {
@@ -105,8 +86,6 @@ public class HelpListResource extends OptionsResource{
                 .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
                 .build(); */
     }
-
-    //DELETE
 
     @DELETE
     @Path("/{entryId}")
