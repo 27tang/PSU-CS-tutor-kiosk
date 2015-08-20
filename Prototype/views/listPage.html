@@ -14,7 +14,7 @@
         </thead>
 
 
-        <tr ng-repeat="listEntry in helpListEntries | orderBy:'date'" ng-click="getSelectedTuteeId($index)">
+        <tr ng-repeat="listEntry in helpListEntries | orderBy:'date' " ng-click="getSelectedTuteeId($index)">
             <td>{{$index + 1}}</td>
             <td id="listIndex" ng-hide="true"> {{ listEntry.ind }}</td>
             <td>{{ listEntry.studentObject.name }}</td>
@@ -40,7 +40,7 @@
 <div style="margin: auto; padding: 20px">
 StudentID: <input type="text" ng-model="newEntry.studentId" style="border: 1px solid darkslategrey"/><br />
 
-    
+
 
     <a style="align-content: center" class="btn kbutton"
        ng-click="identifyLaunchState()">LAUNCH FORM (new) {{launchStateIdentifier}} </a>

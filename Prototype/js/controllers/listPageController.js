@@ -20,8 +20,9 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
         }
 
         if(isTutor){
-            $state.go('.newEntryForm.tutorLaunch');
+            $state.go('listPageTutorView');
         } else if($scope.checkIfStudentExists()) {
+            $scope.getStudentName($scope.newEntry.studentId);
             $state.go('.newEntryForm.selectCourse');
         } else {
         }
