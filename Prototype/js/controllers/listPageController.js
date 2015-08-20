@@ -1,10 +1,13 @@
 app.controller('listPageController', ['$state','$scope', 'helpList', 'entities', '$http', function($state, $scope, helpList, entities) {
 
 
+
+
     $scope.newEntry = {};
     $scope.tutorAssignment = {
         tID: 900996708,
-        entryId: 0.,
+        entryId: 0,
+        selectedTuteeId: 0,
         dId: 0
     };
 
@@ -30,6 +33,7 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
     $scope.updateHelpList = function() {
         helpList.getHelpList().then(function (result) {
             $scope.helpListEntries = result.data; //.data.listEntry;
+
 
             console.log($scope.helpListEntries);
 
@@ -90,6 +94,7 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
     //adds a student object to each help list entry based on the student id in the entry
     $scope.aSyncGetStudent = function(index, hlEntries){
         var tID = hlEntries[index].tuteeId;
+        hlEntries[index].ind = index;
 
         entities.getStudent(tID).then(function(result){
             hlEntries[index].studentObject = result.data;
@@ -110,8 +115,10 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
     $scope.postListEntry = function (tuteeId, courseNum, tutorId, location) {
 
         var date = new Date().toJSON();
-        var newDate = date.substr(0,23) + '-07:00';
-        var text = '{"listEntry":{"course":"' + courseNum + '","date":"' + newDate + '","location":"' + location + '","tuteeId":'+ tuteeId +',"tutorId":' + tutorId + '}}';
+        console.log(date);
+        //var newDate = date.substr(0,23) + '-07:00';
+
+        var text = '{"listEntry":{"course":"' + courseNum + '","date":"' + date + '","location":"' + location + '","tuteeId":'+ tuteeId +',"tutorId":' + tutorId + '}}';
 
         console.log(text);
         helpList.postHelpList(text).then(function(result){
@@ -121,12 +128,16 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
 
 
     $scope.putTutor = function(){
-        var entryId = $scope.tutorAssignment.entryId -1;
-        var entry = $scope.helpListEntries[entryId];
+       // var entryId = $scope.tutorAssignment.entryId -1;
+        var entry = $scope.helpListEntries[$scope.tutorAssignment.entryId];
         entry.tutorId = $scope.tutorAssignment.tID;
-        var text = '{"listEntry":{"course":"' + entry.course +  '","location":"'
-            + entry.location + '","tuteeId":'+ entry.tuteeId +',"entryId":'+ $scope.tutorAssignment.entryId +',"tutorId":' + entry.tutorId + '}}';
-            helpList.putHelpListEntry(entryId + 1, text).then(function(result){
+        var text = '{"listEntry":{"course":"' + entry.course + '","date":"' + entry.date +  '","location":"'
+            + entry.location + '","tuteeId":'+ entry.tuteeId +',"entryId":'
+            + $scope.tutorAssignment.entryId +',"tutorId":' + entry.tutorId + '}}';
+        console.log("********************");
+        console.log(entry.tutorId);
+        console.log(entry.date);
+            helpList.putHelpListEntry(entry.tuteeId, text).then(function(result){
                 $scope.reloadPage();
             })
 
@@ -165,5 +176,19 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
      }
      });
      */
+
+
+
+    $scope.getSelectedTuteeId = function(index){
+
+
+        var text = angular.element(document.querySelectorAll('#tuteeId'));
+        var indices = angular.element(document.querySelectorAll('#listIndex'));
+        $scope.tutorAssignment.selectedTuteeId = text[index].innerHTML;
+        $scope.tutorAssignment.entryId = parseInt(indices[index].innerHTML);
+
+     //   console.log(typeof($scope.tutorAssignment.entryId));
+       // console.log( $scope.helpListEntries[$scope.tutorAssignment.entryId]);
+    };
 
 }]);

@@ -36,11 +36,11 @@ public class HelpListResource extends OptionsResource{
     }
 
     @GET
-    @Path("/{entryId}")
-    public Response getHelpListEntry(@PathParam("entryId") long entryId){
+    @Path("/{tuteeId}")
+    public Response getHelpListEntry(@PathParam("tuteeId") long tuteeId){
 
         return Response.status(Response.Status.ACCEPTED)
-                .entity(new Gson().toJson(helpListService.getListEntry(entryId)))
+                .entity(new Gson().toJson(helpListService.getListEntry(tuteeId)))
                 .header("Access-Control-Allow-Origin", "*")
                 .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
                 .header("Access-Control-Allow-Credentials", "true")

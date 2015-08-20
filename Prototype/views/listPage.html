@@ -5,7 +5,7 @@
     <table style="width: 800px">
 
         <thead>
-            <th>#</th>
+            <!--<th>#</th>-->
             <th>Name</th>
             <th>Course</th>
             <th>Tutor Assigned</th>
@@ -14,13 +14,15 @@
         </thead>
 
 
-        <tr ng-repeat="listEntry in helpListEntries">
-            <td>{{ listEntry.entryId}}</td>
+        <tr ng-repeat="listEntry in helpListEntries | orderBy:'date'" ng-click="getSelectedTuteeId($index)">
+           <td>{{$index + 1}}</td>
+            <td id="tuteeId" ng-hide="true">{{ listEntry.tuteeId}}</td>
+            <td id="listIndex"> {{ listEntry.ind }}</td>
             <td>{{ listEntry.studentObject.name }}</td>
             <td>{{ listEntry.course }}</td>
             <td>{{ listEntry.tutorObject.name }}</td>
-            <td>{{ listEntry.location }}</td>
-            <td>{{ listEntry.date | date : 'short' }}</td>
+            <td >{{ listEntry.location }}</td>
+            <td>{{ listEntry.date}}</td>
         </tr>
 
 

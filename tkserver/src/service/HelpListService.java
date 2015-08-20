@@ -6,10 +6,7 @@ import model.persons.Student;
 import model.persons.Tutor;
 import testFakeDatabase.DatabaseClass;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by x on 7/29/15.
@@ -19,8 +16,9 @@ public class HelpListService {
 
     public HelpListService() {
         //adding test entries
-        listEntryMap.put(1L, new ListEntry(1, 999999992, "CS202", 4, 900996708));
-        listEntryMap.put(2L, new ListEntry(2, 999999996, "CS300", 1, 000000000));
+      //  listEntryMap.put(999999992L, new ListEntry(1, 999999992, "CS202", 4, 900996708));
+      //  listEntryMap.put(999999996L, new ListEntry(2, 999999996, "CS300", 1, 000000000));
+        System.out.println(new Date());
     }
 
     public List<ListEntry> getAllListEntries() {
@@ -37,19 +35,21 @@ public class HelpListService {
         System.out.println(listEntry.getCourse());
 
         System.out.println("SIZE BEFORE:" + listEntryMap.size());
-        listEntryMap.put(listEntry.getEntryId(), listEntry);
+        listEntryMap.put(listEntry.getTuteeId(), listEntry);
         System.out.println("SIZE AFTER:" + listEntryMap.size());
         return listEntry;
     }
 
     public ListEntry updateListEntry(ListEntry listEntry) {
-        if(listEntry.getEntryId() <= 0) {
-            System.out.println("GOT IN THE NULL" + listEntry.getEntryId());
+        if(listEntry.getEntryId() < 0) {
+           // System.out.println("GOT IN THE NULL" + listEntry.getEntryId());
             return null;
         }
-        ListEntry updatedEntry = listEntryMap.put(listEntry.getEntryId(), listEntry);
-        System.out.println(listEntry.getEntryId());
         System.out.println(listEntry.getTutorId());
+        listEntry.setDate(listEntryMap.get(listEntry.getTuteeId()).getDate());
+        ListEntry updatedEntry = listEntryMap.put(listEntry.getTuteeId(), listEntry);
+       // System.out.println(listEntry.getEntryId());
+       // System.out.println(listEntry.getTutorId());
         return updatedEntry;
     }
 
