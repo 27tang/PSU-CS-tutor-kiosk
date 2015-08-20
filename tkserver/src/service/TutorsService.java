@@ -16,9 +16,10 @@ public class TutorsService {
     private Map<Long, Tutor> tutorsList = DatabaseClass.getTutors();
 
     public TutorsService() {
-        tutorsList.put(900996708L, new Tutor(900996708, 11111, "X"));
-        tutorsList.put(222222222L, new Tutor(222222222, 11111, "Rohan"));
+        tutorsList.put(900996708L, new Tutor(900996708, 99999, "X"));
+        tutorsList.put(222222222L, new Tutor(222222222, 22222, "Rohan"));
         tutorsList.put(111111111L, new Tutor(111111111, 11111, "Mr Meeseeks"));
+        tutorsList.put(333333333L, new Tutor(333333333, 33333, "Brook"));
     }
 
     public List<Tutor> getAllTutors() {

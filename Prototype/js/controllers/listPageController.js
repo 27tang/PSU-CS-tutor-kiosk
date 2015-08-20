@@ -1,15 +1,54 @@
 app.controller('listPageController', ['$state','$scope', 'helpList', 'entities', '$http', function($state, $scope, helpList, entities) {
 
 
+    $scope.tutorList = {
+        X: 900996708,
+        Brook: 333333333,
+        Rohan: 222222222,
+        MrMeeseeks: 111111111
+    };
 
+    $scope.identifyLaunchState = function(){
+        var isTutor = false;
+        for(key in $scope.tutorList) {
+            var tutor = $scope.tutorList[key];
+            console.log(typeof(tutor));
+            if ($scope.newEntry.studentId == tutor) {
+                console.log("ID entered belongs to a tutor.");
+                isTutor = true;
+            }
+        }
+
+        if(isTutor){
+            $state.go('.newEntryForm.tutorLaunch');
+        } else if($scope.checkIfStudentExists()) {
+            $state.go('.newEntryForm.selectCourse');
+        } else {
+        }
+
+    };
+
+    $scope.checkIfStudentExists = function (){
+      //do checking later
+        return true;
+    };
+
+    console.log($scope.tutorList);
 
     $scope.newEntry = {};
     $scope.tutorAssignment = {
-        tID: 900996708,
+        tId: 900996708,
         entryId: 0,
         selectedTuteeId: 0,
         dId: 0
     };
+
+    $scope.generateSampleEntries = function(){
+        for(i = 0; i < 5; ++i) {
+            $scope.postListEntry(999999990+i, "CS100", 0, i);
+        }
+    };
+
 
     $scope.reloadPage = function(){
         $state.go($state.$current, null, { reload: true });
@@ -111,7 +150,6 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
     };
 
 
-
     $scope.postListEntry = function (tuteeId, courseNum, tutorId, location) {
 
         var date = new Date().toJSON();
@@ -128,9 +166,8 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
 
 
     $scope.putTutor = function(){
-       // var entryId = $scope.tutorAssignment.entryId -1;
         var entry = $scope.helpListEntries[$scope.tutorAssignment.entryId];
-        entry.tutorId = $scope.tutorAssignment.tID;
+        entry.tutorId = $scope.tutorAssignment.tId;
         var text = '{"listEntry":{"course":"' + entry.course + '","date":"' + entry.date +  '","location":"'
             + entry.location + '","tuteeId":'+ entry.tuteeId +',"entryId":'
             + $scope.tutorAssignment.entryId +',"tutorId":' + entry.tutorId + '}}';
@@ -144,49 +181,18 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
     };
 
     $scope.deleteEntry = function(entryId){
-        console.log(entryId);
-        helpList.deleteHelpListEntry(entryId).then(function(result){
+
+        var entry = $scope.helpListEntries[$scope.tutorAssignment.entryId];
+        console.log(entry.tuteeId);
+        helpList.deleteHelpListEntry(entry.tuteeId).then(function(result){
             $scope.reloadPage();
         });
     };
 
 
-    /* //non-working student getter - results in scramblage
-
-     helpList.getHelpList().then(function (result) {
-     $scope.helpListEntries = result.data.listEntry;
-     var inc = 0;
-
-     console.log($scope.helpListEntries);
-
-     for (var key in $scope.helpListEntries) {
-     if ($scope.helpListEntries.hasOwnProperty(key)) {
-     var tID = $scope.helpListEntries[key].tuteeId;
-     console.log("wtfman");
-
-
-     student.getTheStudent(tID).then(function (result) {
-     console.log($scope.helpListEntries);
-     console.log($scope.helpListEntries.entryId);
-     // console.log($scope.helpListEntries[$scope.helpListEntries.entryId]);
-     $scope.helpListEntries[inc].studentObject = result.data.student;
-     inc++;
-     });
-     }
-     }
-     });
-     */
-
-
-
     $scope.getSelectedTuteeId = function(index){
-
-
-        var text = angular.element(document.querySelectorAll('#tuteeId'));
         var indices = angular.element(document.querySelectorAll('#listIndex'));
-        $scope.tutorAssignment.selectedTuteeId = text[index].innerHTML;
         $scope.tutorAssignment.entryId = parseInt(indices[index].innerHTML);
-
      //   console.log(typeof($scope.tutorAssignment.entryId));
        // console.log( $scope.helpListEntries[$scope.tutorAssignment.entryId]);
     };

@@ -5,7 +5,7 @@
     <table style="width: 800px">
 
         <thead>
-            <!--<th>#</th>-->
+            <th>#</th>
             <th>Name</th>
             <th>Course</th>
             <th>Tutor Assigned</th>
@@ -15,9 +15,8 @@
 
 
         <tr ng-repeat="listEntry in helpListEntries | orderBy:'date'" ng-click="getSelectedTuteeId($index)">
-           <td>{{$index + 1}}</td>
-            <td id="tuteeId" ng-hide="true">{{ listEntry.tuteeId}}</td>
-            <td id="listIndex"> {{ listEntry.ind }}</td>
+            <td>{{$index + 1}}</td>
+            <td id="listIndex" ng-hide="true"> {{ listEntry.ind }}</td>
             <td>{{ listEntry.studentObject.name }}</td>
             <td>{{ listEntry.course }}</td>
             <td>{{ listEntry.tutorObject.name }}</td>
@@ -30,32 +29,10 @@
     </div>
 </div>
 
-<!--
-<div>
-    <form novalidate class="simple-form">
-        StudentID: <input type="text" ng-model="newEntry.studentId" /><br />
-        Course: <input type="text" ng-model="newEntry.course" /><br />
-        Tutor: <input type="text" ng-model="newEntry.tutor" /><br />
-    </form>
-
-</div>
-
-<a class="kbutton"> form = {{newEntry | json}}</a>
-<br/>
+<button style="float: right" class="btn kbutton" ng-click="generateSampleEntries()">Generate Sample Entries</button>
 
 
-<button style="float: right" class="kbutton" type="button" ng-click="postListEntry(newEntry.studentId,newEntry.course,newEntry.tutor)   "> TEST POST </button>
-<br/>
-<br/>
-<br/>
 
-
-<button style="float: right" class="kbutton" type="button" ng-click="deleteListEntry(entryToDelete)"> TEST DELETE for {{entryToDelete}}</button>
-<form style ="float: right" novalidate class="simple-form">
-    Delete Entry: <input type="text" ng-model="entryToDelete" /><br />
-</form>
-
--->
 
 <!--
 <button class="kbutton" type="button" ng-click="getStudent(999999993)"> TEST GET STUDENT </button>
@@ -63,16 +40,22 @@
 <div style="margin: auto; padding: 20px">
 StudentID: <input type="text" ng-model="newEntry.studentId" style="border: 1px solid darkslategrey"/><br />
 
+    
 
-    <a style="align-content: center" ui-sref=".newEntryForm.selectCourse" class="btn kbutton" ng-click="getStudentName(newEntry.studentId)">LAUNCH FORM </a>
+    <a style="align-content: center" class="btn kbutton"
+       ng-click="identifyLaunchState()">LAUNCH FORM (new) {{launchStateIdentifier}} </a>
+
     <br/><br/>
-    Entry to pick: <input type="text" ng-model="tutorAssignment.entryId" style="border: 1px solid darkslategrey"/> <br />
-    <a class="btn kbutton" ng-click="putTutor(tutorAssignment.tID)" >TEST PUT</a>
-    <a> TEST ASSIGN {{tutorAssignment.tID}} to entry: {{tutorAssignment.entryId}}(http Put)</a> <br/>
+
+    Tutor to put: <input type="text" ng-model="tutorAssignment.tId" style="border: 1px solid darkslategrey"/> <br />
+    <a class="btn kbutton" ng-click="putTutor()" >TEST PUT</a>
+    <a> TEST ASSIGN {{tutorAssignment.tId}} to entry: {{tutorAssignment.entryId}}(http Put)</a> <br/>
 </div>
 
-Entry to pick: <input type="text" ng-model="tutorAssignment.dId" style="border: 1px solid darkslategrey"/> <br />
-<a class="btn kbutton" ng-click="deleteEntry(tutorAssignment.dId)" >TEST DELETE</a>
+
+
+Entry to pick: <input type="text" ng-model="tutorAssignment.entryId" style="border: 1px solid darkslategrey"/> <br />
+<a class="btn kbutton" ng-click="deleteEntry(tutorAssignment.entryId)" >TEST DELETE</a>
 <a> TEST DELETE {{tutorAssignment.dId}} (http DELETE)</a> <br/>
 </div>
 <div style="position:   fixed; top: 10%; width: 100%;  " ui-view></div>
