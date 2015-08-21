@@ -28,7 +28,6 @@ app.config(function($stateProvider, $urlRouterProvider){
 
 
 
-
         .state('listPage', {
             url: '/listPage',
             templateUrl: 'views/listPage.html',

@@ -29,6 +29,11 @@
     </div>
 </div>
 
-TUTOR: {{launcher.tutorObject.name}}
-<a class="btn kbutton" ng-click="putTutor()" >TEST PUT</a>
-<a> TEST ASSIGN {{tutorAssignment.tId}} to entry: {{tutorAssignment.entryId}}(http Put)</a> <br/>
+<p class = "fontStyle"> TUTOR: {{launcher.tutorObject.name}} </p>
+<p class="fontStyle">Entry: {{launcher.entryId}} </p>
+<a class="btn kbutton" ng-click="putTutor(launcher.tId)" >Assign to Student</a>
+<a class="btn kbutton" ng-click="putTutor(0)" >Remove from Student</a>
+
+
+
+<a class="btn kbutton" ng-click="deleteEntry(launcher.entryId)" >TEST DELETE</a>

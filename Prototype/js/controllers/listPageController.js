@@ -2,13 +2,10 @@ app.factory('idSaver', function($http) {
 
     var savedId = 0;
     return {
-
         set: function(toSet) {
             savedId = toSet;
-            console.log("IN THE SERVICE SETTER: " + savedId);
         },
         get: function() {
-            console.log("IN THE SERVICE GETTER:" + savedId);
             return savedId;
         }
 
@@ -27,7 +24,7 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
     };
     $scope.launcher = {};
     $scope.launcher.tId = idSaver.get();
-    $scope.checkIfTidIsTutor = function(tutor){
+    $scope.checkIfTidIsTutor = function(){
             var isTutor = false;
             for(key in $scope.tutorList) {
                 var tutor = $scope.tutorList[key];
@@ -56,12 +53,17 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
             $state.go('listPageTutorView');
         } else if($scope.checkIfStudentExists()) {
             $scope.getStudentObject($scope.launcher.tId);
+
+
             $state.go('.newEntryForm.selectCourse');
         } else {
         }
 
     };
 
+    $scope.checkIfStudentIsOnList = function(){
+
+    };
     $scope.checkIfStudentExists = function (){
       //do checking later
         return true;
@@ -79,7 +81,6 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
         console.log("I'm reeloaded!")
     };
 
-    $scope.entryToDelete = 0;
     $scope.deleteListEntry = function(entryId){
       console.log("DELETING ENTRY: "+ entryId);
         helpList.deleteHelpListEntry(entryId);
@@ -88,12 +89,8 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
     $scope.getStudentObject = function(studentId) {
         entities.getStudent(studentId).then(function(result){
             $scope.launcher.studentObject = result.data;
-            console.log($scope.launcher.studentObject);
         });
     };
-
-
-
 
     $scope.updateHelpList = function() {
         helpList.getHelpList().then(function (result) {
@@ -175,7 +172,6 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
         });
     };
 
-
     $scope.postListEntry = function (tuteeId, courseNum, tutorId, location) {
 
         var date = new Date().toJSON();
@@ -190,10 +186,9 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
         });
     };
 
-
-    $scope.putTutor = function(){
+    $scope.putTutor = function(tutorToPut){
         var entry = $scope.helpListEntries[$scope.launcher.entryId];
-        entry.tutorId = $scope.launcher.tId;
+        entry.tutorId = tutorToPut;
         var text = '{"listEntry":{"course":"' + entry.course + '","date":"' + entry.date +  '","location":"'
             + entry.location + '","tuteeId":'+ entry.tuteeId +',"entryId":'
             + $scope.launcher.entryId +',"tutorId":' + entry.tutorId + '}}';
