@@ -48,7 +48,10 @@ app.factory('helpList', function($http) {
                     return data;
                 })
         }
-
     }
 });
+
+
+
+
 

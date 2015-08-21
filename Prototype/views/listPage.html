@@ -38,8 +38,8 @@
 <button class="kbutton" type="button" ng-click="getStudent(999999993)"> TEST GET STUDENT </button>
 -->
 <div style="margin: auto; padding: 20px">
-StudentID: <input type="text" ng-model="newEntry.studentId" style="border: 1px solid darkslategrey"/><br />
-
+StudentID: <input type="text" ng-model="launcher.tId"  style="border: 1px solid darkslategrey"/><br />
+{{launcher.tId}}
 
 
     <a style="align-content: center" class="btn kbutton"
@@ -47,15 +47,15 @@ StudentID: <input type="text" ng-model="newEntry.studentId" style="border: 1px s
 
     <br/><br/>
 
-    Tutor to put: <input type="text" ng-model="tutorAssignment.tId" style="border: 1px solid darkslategrey"/> <br />
-    <a class="btn kbutton" ng-click="putTutor()" >TEST PUT</a>
-    <a> TEST ASSIGN {{tutorAssignment.tId}} to entry: {{tutorAssignment.entryId}}(http Put)</a> <br/>
+
 </div>
 
 
 
-Entry to pick: <input type="text" ng-model="tutorAssignment.entryId" style="border: 1px solid darkslategrey"/> <br />
-<a class="btn kbutton" ng-click="deleteEntry(tutorAssignment.entryId)" >TEST DELETE</a>
-<a> TEST DELETE {{tutorAssignment.dId}} (http DELETE)</a> <br/>
+Entry to pick: <input type="text" ng-model="launcher.entryId" style="border: 1px solid darkslategrey"/> <br />
+<a class="btn kbutton" ng-click="deleteEntry(launcher.entryId)" >TEST DELETE</a>
+<a> TEST DELETE {{launcher.dId}} (http DELETE)</a> <br/>
 </div>
+
+
 <div style="position:   fixed; top: 10%; width: 100%;  " ui-view></div>

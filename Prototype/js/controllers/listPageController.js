@@ -1,5 +1,26 @@
-app.controller('listPageController', ['$state','$scope', 'helpList', 'entities', '$http', function($state, $scope, helpList, entities) {
+app.factory('idSaver', function($http) {
 
+    var savedId = 0;
+    return {
+
+        set: function(toSet) {
+            savedId = toSet;
+            console.log("IN THE SERVICE SETTER: " + savedId);
+        },
+        get: function() {
+            console.log("IN THE SERVICE GETTER:" + savedId);
+            return savedId;
+        }
+
+    }
+});
+
+
+app.controller('listPageController', ['$state','$scope', 'helpList', 'entities','idSaver',
+    function($state, $scope, helpList, entities, idSaver) {
+
+    $scope.launcher = {};
+    $scope.launcher.tId = idSaver.get();
 
     $scope.tutorList = {
         X: 900996708,
@@ -13,16 +34,17 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
         for(key in $scope.tutorList) {
             var tutor = $scope.tutorList[key];
             console.log(typeof(tutor));
-            if ($scope.newEntry.studentId == tutor) {
+            if ($scope.launcher.tId == tutor) {
                 console.log("ID entered belongs to a tutor.");
                 isTutor = true;
             }
         }
 
         if(isTutor){
+            idSaver.set($scope.launcher.tId);
             $state.go('listPageTutorView');
         } else if($scope.checkIfStudentExists()) {
-            $scope.getStudentName($scope.newEntry.studentId);
+            $scope.getStudentName($scope.launcher.tId);
             $state.go('.newEntryForm.selectCourse');
         } else {
         }
@@ -36,13 +58,7 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
 
     console.log($scope.tutorList);
 
-    $scope.newEntry = {};
-    $scope.tutorAssignment = {
-        tId: 900996708,
-        entryId: 0,
-        selectedTuteeId: 0,
-        dId: 0
-    };
+
 
     $scope.generateSampleEntries = function(){
         for(i = 0; i < 5; ++i) {
@@ -64,8 +80,8 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
 
     $scope.getStudentName = function(studentId) {
         entities.getStudent(studentId).then(function(result){
-            $scope.newEntry.studentObject = result.data;
-            console.log($scope.newEntry.studentObject);
+            $scope.launcher.studentObject = result.data;
+            console.log($scope.launcher.studentObject);
         });
     };
 
@@ -167,11 +183,11 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
 
 
     $scope.putTutor = function(){
-        var entry = $scope.helpListEntries[$scope.tutorAssignment.entryId];
-        entry.tutorId = $scope.tutorAssignment.tId;
+        var entry = $scope.helpListEntries[$scope.launcher.entryId];
+        entry.tutorId = $scope.launcher.tId;
         var text = '{"listEntry":{"course":"' + entry.course + '","date":"' + entry.date +  '","location":"'
             + entry.location + '","tuteeId":'+ entry.tuteeId +',"entryId":'
-            + $scope.tutorAssignment.entryId +',"tutorId":' + entry.tutorId + '}}';
+            + $scope.launcher.entryId +',"tutorId":' + entry.tutorId + '}}';
         console.log("********************");
         console.log(entry.tutorId);
         console.log(entry.date);
@@ -183,7 +199,7 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
 
     $scope.deleteEntry = function(entryId){
 
-        var entry = $scope.helpListEntries[$scope.tutorAssignment.entryId];
+        var entry = $scope.helpListEntries[$scope.launcher.entryId];
         console.log(entry.tuteeId);
         helpList.deleteHelpListEntry(entry.tuteeId).then(function(result){
             $scope.reloadPage();
@@ -193,9 +209,9 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
 
     $scope.getSelectedTuteeId = function(index){
         var indices = angular.element(document.querySelectorAll('#listIndex'));
-        $scope.tutorAssignment.entryId = parseInt(indices[index].innerHTML);
-     //   console.log(typeof($scope.tutorAssignment.entryId));
-       // console.log( $scope.helpListEntries[$scope.tutorAssignment.entryId]);
+        $scope.launcher.entryId = parseInt(indices[index].innerHTML);
+     //   console.log(typeof($scope.launcher.entryId));
+       // console.log( $scope.helpListEntries[$scope.launcher.entryId]);
     };
 
 }]);

@@ -1,4 +1,7 @@
+
+
 var app = angular.module('kioskApp', ['ngAnimate', 'ui.router']);
+
 
 app.config(function($httpProvider){
     //enable cross domain calls:
