@@ -65,10 +65,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TutorResource.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="TutorResource.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/resource/TutorResource.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="0.40298507">
               <caret line="26" column="23" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -97,10 +97,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HelpListService.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="HelpListService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/service/HelpListService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.6119403">
+            <state vertical-scroll-proportion="0.0">
               <caret line="49" column="56" selection-start-line="49" selection-start-column="56" selection-end-line="49" selection-end-column="56" />
               <folding />
             </state>
@@ -737,12 +737,12 @@
       <workItem from="1438731220436" duration="1965000" />
       <workItem from="1438838702782" duration="27485000" />
       <workItem from="1439856815422" duration="15658000" />
-      <workItem from="1440039675102" duration="7424000" />
+      <workItem from="1440039675102" duration="8138000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="120383000" />
+    <option name="totallyTimeSpent" value="121097000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1366" height="741" extended-state="6" />
@@ -1168,13 +1168,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/resource/TutorResource.java">
+    <entry file="file://$PROJECT_DIR$/src/service/HelpListService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="23" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <caret line="49" column="56" selection-start-line="49" selection-start-column="56" selection-end-line="49" selection-end-column="56" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1186,11 +1184,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/service/HelpListService.java">
+    <entry file="file://$PROJECT_DIR$/src/resource/TutorResource.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.6119403">
-          <caret line="49" column="56" selection-start-line="49" selection-start-column="56" selection-end-line="49" selection-end-column="56" />
-          <folding />
+        <state vertical-scroll-proportion="0.40298507">
+          <caret line="26" column="23" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

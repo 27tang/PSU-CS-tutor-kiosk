@@ -30,7 +30,7 @@ app.factory('entities', function($http){
                     console.warn("getStudents failed");
                 })
         },
-        getTutor: function (listIndex, tutorId) {
+        getTutor: function (tutorId) {
 
             return $http({method: 'GET', url: 'http://localhost:8080/tutors/'+tutorId}).
                 success(function(data, status, headers, config) {

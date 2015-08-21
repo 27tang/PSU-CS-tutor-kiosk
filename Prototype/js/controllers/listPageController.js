@@ -19,32 +19,43 @@ app.factory('idSaver', function($http) {
 app.controller('listPageController', ['$state','$scope', 'helpList', 'entities','idSaver',
     function($state, $scope, helpList, entities, idSaver) {
 
-    $scope.launcher = {};
-    $scope.launcher.tId = idSaver.get();
-
     $scope.tutorList = {
         X: 900996708,
         Brook: 333333333,
         Rohan: 222222222,
         MrMeeseeks: 111111111
     };
+    $scope.launcher = {};
+    $scope.launcher.tId = idSaver.get();
+    $scope.checkIfTidIsTutor = function(tutor){
+            var isTutor = false;
+            for(key in $scope.tutorList) {
+                var tutor = $scope.tutorList[key];
+                console.log(typeof(tutor));
+                if ($scope.launcher.tId == tutor) {
+                    console.log("ID entered belongs to a tutor.");
+                    isTutor = true;
+                }
+            }
+            return isTutor;
+    };
+    $scope.getTutorObject = function(tutorId) {
+        entities.getTutor(tutorId).then(function(result){
+            $scope.launcher.tutorObject = result.data;
+        });
+    };
+
+    if($scope.checkIfTidIsTutor()){
+        $scope.getTutorObject($scope.launcher.tId);
+    }
 
     $scope.identifyLaunchState = function(){
-        var isTutor = false;
-        for(key in $scope.tutorList) {
-            var tutor = $scope.tutorList[key];
-            console.log(typeof(tutor));
-            if ($scope.launcher.tId == tutor) {
-                console.log("ID entered belongs to a tutor.");
-                isTutor = true;
-            }
-        }
-
+        var isTutor = $scope.checkIfTidIsTutor();
         if(isTutor){
             idSaver.set($scope.launcher.tId);
             $state.go('listPageTutorView');
         } else if($scope.checkIfStudentExists()) {
-            $scope.getStudentName($scope.launcher.tId);
+            $scope.getStudentObject($scope.launcher.tId);
             $state.go('.newEntryForm.selectCourse');
         } else {
         }
@@ -55,10 +66,6 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
       //do checking later
         return true;
     };
-
-    console.log($scope.tutorList);
-
-
 
     $scope.generateSampleEntries = function(){
         for(i = 0; i < 5; ++i) {
@@ -78,12 +85,14 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
         helpList.deleteHelpListEntry(entryId);
     };
 
-    $scope.getStudentName = function(studentId) {
+    $scope.getStudentObject = function(studentId) {
         entities.getStudent(studentId).then(function(result){
             $scope.launcher.studentObject = result.data;
             console.log($scope.launcher.studentObject);
         });
     };
+
+
 
 
     $scope.updateHelpList = function() {
@@ -161,7 +170,7 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
     $scope.aSyncGetTutor = function(index, hlEntries){
         var tID = hlEntries[index].tutorId;
 
-        entities.getTutor(index, tID).then(function(result){
+        entities.getTutor(tID).then(function(result){
             hlEntries[index].tutorObject = result.data;
         });
     };
