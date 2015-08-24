@@ -77,15 +77,12 @@ input {
     font-family: Marske;
     font-size: 30px;
     color: aquamarine;
-    margin: auto;
+    margin: 10px 10px 10px 10px;
     text-align: center;
     vertical-align: middle;
 }
 
 .kbutton:hover {
-    font-family: Marske;
-    font-size: 30px;
-    text-shadow: 2px 2px 9px #005399;
     animation:blur .75s ease-out;
     text-decoration: none;
 

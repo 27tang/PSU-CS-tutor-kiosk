@@ -29,29 +29,19 @@
     </div>
 </div>
 
-<button style="float: right" class="btn kbutton" ng-click="generateSampleEntries()">Generate Sample Entries</button>
+
+<div style="text-align: center;padding: 30px">
+<div style="margin:0 auto; display: inline">
+<input type="text" ng-model="launcher.tId"  style="text-align: center; border: 1px solid darkslategrey"/><br />
 
 
+    <p style="align-content: center" class="btn kbutton"
+       ng-click="identifyLaunchState()">Go{{launchStateIdentifier}} </p>
 
-
-<!--
-<button class="kbutton" type="button" ng-click="getStudent(999999993)"> TEST GET STUDENT </button>
--->
-<div style="margin: auto; padding: 20px">
-StudentID: <input type="text" ng-model="launcher.tId"  style="border: 1px solid darkslategrey"/><br />
-
-
-    <a style="align-content: center" class="btn kbutton"
-       ng-click="identifyLaunchState()">LAUNCH FORM (new) {{launchStateIdentifier}} </a>
-
-    <br/><br/>
+    <p> <button class="btn kbutton" ng-click="generateSampleEntries()">Generate Samples</button> </p>
 
 
 </div>
-
-
-
-
 </div>
 
 

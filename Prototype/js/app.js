@@ -14,6 +14,13 @@ app.config(function($stateProvider, $urlRouterProvider){
 
     $stateProvider
 
+
+        .state('testImgPlace', {
+            url: '/testImgPlace',
+            templateUrl: 'views/testImgPlace.html',
+            controller: 'testImgPlaceController'
+        })
+
         .state('mainMenu', {
             url: '/mainMenu',
             templateUrl: 'views/mainMenu.html',
