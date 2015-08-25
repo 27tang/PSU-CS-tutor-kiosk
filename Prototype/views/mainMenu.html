@@ -1,10 +1,15 @@
 
 
 <div ng-repeat="buttonInfo in buttonInfos">
-   <li style="padding: 20px;">
-       <a style="align-content: center" ui-sref={{buttonInfo.state}} class="btn kbutton">{{ buttonInfo.name }}</a>
-    </li>
+   <ul style="padding: 20px;">
+       <a style="align-content: center" class="btn kbutton" id="{{'button-' + $index}}"
+          ng-click="buttonGo($index)" >
+           {{ buttonInfo.name }}
+       </a>
+    </ul>
 </div>
+
+
 
 <p> <a ui-sref="testImgPlace" class="btn btn-danger"> TEST FLOORPLAN JPG THING </a></p>
 

@@ -4,8 +4,13 @@
 <html>
 
 <head>
+
+
+
     <!-- CSS (load bootstrap) -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/darkly/bootstrap.min.css">
+
+
 
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/animations.css">
@@ -14,6 +19,12 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-animate.min.js"></script>
+
+
+    <script src="//code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="js/directives/fixedHeader.js"></script>
+
+
     <script src="js/app.js"></script>
 
     <script src="js/services/helpListService.js"></script>
@@ -24,6 +35,8 @@
     <script src="js/controllers/mainMenuController.js"></script>
     <script src="js/controllers/tutorLoginController.js"></script>
     <script src="js/controllers/testImgPlaceController.js"></script>
+    <script src="js/controllers/mapController.js"></script>
+
 
 
 </head>
@@ -32,7 +45,7 @@
 <nav class="navbar navbar-default" role="navigation">
 
     <div class="navbar-header">
-        <a class ="navbar-brand" ui-sref="mainMenu">TUTOR KIOSK (Prototype)</a>
+        <div style="font-family: Marske; font-size: 30px;" ui-sref="mainMenu">TUTOR KIOSK (Prototype)</div>
 
         <ul class="nav navbar-nav">
 
@@ -40,6 +53,11 @@
         </ul>
     </div>
 </nav>
+
+</table>
+
+
+
 
 
     <div ui-view></div>

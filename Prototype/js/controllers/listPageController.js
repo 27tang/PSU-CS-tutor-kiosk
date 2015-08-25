@@ -13,8 +13,22 @@ app.factory('idSaver', function($http) {
 });
 
 
-app.controller('listPageController', ['$state','$scope', 'helpList', 'entities','idSaver',
-    function($state, $scope, helpList, entities, idSaver) {
+app.controller('listPageController', ['$state','$scope','$timeout', 'helpList', 'entities','idSaver',
+    function($state, $scope, $timeout, helpList, entities, idSaver) {
+
+        $scope.locations = [
+            'Front',
+            '88-01',
+            '88-02',
+            '88-03',
+            '88-04',
+            '88-05',
+            '88-06',
+            '88-07',
+            '88-08',
+            '88-09'
+        ];
+
 
     $scope.tutorList = {
         X: 900996708,
@@ -160,6 +174,7 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
 
         entities.getStudent(tID).then(function(result){
             hlEntries[index].studentObject = result.data;
+            hlEntries[index].studentName = result.data.name;
         });
     };
 
@@ -216,6 +231,13 @@ app.controller('listPageController', ['$state','$scope', 'helpList', 'entities',
         $scope.launcher.entryId = parseInt(indices[index].innerHTML);
      //   console.log(typeof($scope.launcher.entryId));
        // console.log( $scope.helpListEntries[$scope.launcher.entryId]);
+        angular.element(document.querySelectorAll('.listEntriesHL')).removeClass('trHighlighted');
+        angular.element(document.querySelectorAll('.listEntry' + index))
+            .toggleClass('trHighlighted');
+
+        $timeout(function(){
+            angular.element(document.querySelectorAll('.listEntry' + index)).removeClass('trHighlighted')
+        }, 5000);
     };
 
 }]);

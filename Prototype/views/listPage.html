@@ -1,8 +1,8 @@
-<div class="box-table">
+<!--<div class="box-table">
 
     <div style="width: 840px; height:450px; margin: auto; background-color: rgba(255,255,255,0.05);
         overflow: auto; border: 3px solid rgba(0, 83, 153, 0.2);">
-    <table style="width: 800px">
+    <table style="width: 800px" >
 
         <thead>
             <th>#</th>
@@ -28,7 +28,57 @@
     </table>
     </div>
 </div>
+-->
 
+<table class="table" fixed-header
+       style="width: 800px;
+            margin: auto;">
+
+    <thead class="tableHeadStyle">
+    <tr>
+        <th>#</th>
+        <th ng-hide="true">$</th>
+        <th>Name</th>
+        <th>Course</th>
+        <th>Tutor</th>
+        <th style="width: 200px">Location</th>
+        <th>Time</th>
+    </tr>
+    </thead>
+
+    <tbody class="tableBodyStyle">
+
+
+
+    <tr ng-repeat="listEntry in helpListEntries | orderBy:'date' "
+        class="listEntriesHL listEntry{{$index}}"
+        ng-click="getSelectedTuteeId($index)">
+
+
+
+        <td class="listEntriesHL listEntry{{$index}}" >{{$index + 1}}</td>
+        <td class="listEntriesHL listEntry{{$index}}" id="listIndex" ng-hide="true"> {{ listEntry.ind }}</td>
+        <td style=" width: 300px" class="listEntriesHL listEntry{{$index}}"> {{listEntry.studentName }}</td>
+        <td style="width: 100px" class="listEntriesHL listEntry{{$index}}">{{ listEntry.course }}</td>
+        <td style="width: 100px" class="listEntriesHL listEntry{{$index}}"> {{listEntry.tutorObject.name}}</td>
+        <td style="width: 200px; display: block;">
+            <div class="listEntriesHL slider listEntry{{$index}}">
+                <div class="slider-text"> {{ locations[listEntry.location] }}</div>
+                <div class="slider-reveal">
+
+                    <div class="btn" ng-controller="testImgPlaceController"
+                         ng-click="blastTheImage()">View Map</div>
+                </div>
+
+
+            </div>
+
+        </td>
+        <td style="width: 100px" class="listEntriesHL listEntry{{$index}}"> 10:00 pm </td>
+    </tr>
+    </tbody>
+
+</table>
 
 <div style="text-align: center;padding: 30px">
 <div style="margin:0 auto; display: inline">
@@ -44,5 +94,19 @@
 </div>
 </div>
 
+<div class="imgButt" ng-controller="testImgPlaceController">
+
+    <img src="img/fabfloorplan.jpg"/>
+
+    <div class="testImgBack" ng-click="goBack()">
+
+        <div style="display: table-cell;
+                     vertical-align: middle;
+                     margin: auto; ">
+            <span class="glyphicon glyphicon-circle-arrow-left "> </span> Back
+        </div>
+    </div>
+
+</div>
 
 <div style="position:   fixed; top: 10%; width: 100%;  " ui-view></div>

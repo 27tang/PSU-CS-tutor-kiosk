@@ -1,6 +1,7 @@
 
 
-var app = angular.module('kioskApp', ['ngAnimate', 'ui.router']);
+var app = angular.module('kioskApp', ['anguFixedHeaderTable','ngAnimate', 'ui.router']);
+
 
 
 app.config(function($httpProvider){

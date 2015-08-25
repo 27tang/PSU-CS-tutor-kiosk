@@ -1,3 +1,124 @@
+
+.table {
+    height: 400px;
+
+}
+
+
+
+
+
+      .tableStyle {
+          margin: auto;
+          border: solid white;
+
+          background-color: rgba(1, 7, 29, 0.54);
+      }
+
+      .tableHeadStyle {
+          width: 800px;
+          margin: auto;
+          background-color: rgba(255,255,255,0.05);
+          overflow-y: auto;
+          overflow-x: hidden;
+          border: 3px solid rgba(0, 83, 153, 0.2);
+
+      }
+
+      th {
+          text-align: center;
+      }
+
+      td {
+          text-align: center;
+          height: 50px;
+          display: table-cell;
+            font-size: 18px;
+
+
+      }
+
+      tr {
+          height: 40px;
+      }
+
+      .tableBodyStyle {
+
+          margin: auto;
+
+          background-color: rgba(255,255,255,0.05);
+          overflow-y: auto;
+          overflow-x: auto;
+          border: 3px solid rgba(0, 83, 153, 0.2);
+      }
+
+
+
+
+
+/*testing slisder stuff */
+.slider {
+    background: linear-gradient(top, blue 0%, gold 100%);
+    padding: 0px 50px 0px 50px;
+
+    width: 200px;
+    height: 40px;
+    display: inline-block;
+    position: relative;
+    border-radius: 4px;
+    float: left;
+    margin: auto;
+    overflow: hidden;
+    transition: all 0.5s linear;
+    text-decoration: none;
+    text-align: center;
+}
+
+.slider-text {
+    display: block;
+    text-align: center;
+    font-size: 20px;
+    color: #bcbbc0;
+    padding-top: 5px;
+    transition: all 0.5s linear;
+}
+
+
+.slider-reveal {
+    text-align: center;
+
+   margin: auto;
+    height: 0px;
+    color: aqua;
+    font-size: 13px;
+    white-space: nowrap;
+    padding: 10px 10px 10px 10px;
+    line-height: 30px;
+
+    transition: height 0.3s linear;
+
+}
+
+.slider:hover .slider-reveal{
+    height: 40px;
+}
+
+.slider:hover {
+    height: 75px;
+    text-decoration: none;
+}
+
+.trHighlighted {
+    color: white;
+    text-shadow: 0px 0px 10px #fff;
+    height: 75px;
+    text-decoration: none;
+}
+
+
+
+
+
 /*TESTIMG STUFF*/
 
 .imgButt {
@@ -40,9 +161,10 @@ div .testImg{
 
 .imgButt img{
     position: fixed;
-    margin-left: -90%;
-    margin-top: -90%;
-    transform: scale(.5);
+
+    transform: scale(0.5);
+    top:-80%;
+    right: -90%;
     visibility: hidden;
    transition: all 1.5s ease-in-out;
 }
@@ -78,8 +200,8 @@ div .testImg{
 
 .imgButtChange img {
     visibility: visible;
-    margin-top: -20%;
-    margin-left: -100%;
+    top: -30%;
+    right: -40%;
 
     transform: scale(.8);
 }

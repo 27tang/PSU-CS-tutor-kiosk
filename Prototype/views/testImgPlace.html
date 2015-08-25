@@ -1,15 +1,71 @@
 
 
 
+
+
+    <table ng-controller="listPageController" class="table" fixed-header
+           style="width: 800px;
+            margin: auto;">
+
+        <thead class="tableHeadStyle">
+        <tr>
+            <th>#</th>
+            <th ng-hide="true">$</th>
+            <th>Name</th>
+            <th>Course</th>
+            <th>Tutor</th>
+            <th style="width: 200px">Location</th>
+            <th>Time</th>
+        </tr>
+        </thead>
+
+       <tbody class="tableBodyStyle">
+
+
+
+            <tr ng-repeat="listEntry in helpListEntries | orderBy:'date' "
+                class="listEntriesHL listEntry{{$index}}"
+                ng-click="getSelectedTuteeId($index)">
+
+
+
+                <td style="width: 40px" class="listEntriesHL listEntry{{$index}}" >{{$index + 1}}</td>
+                <td class="listEntriesHL listEntry{{$index}}" id="listIndex" ng-hide="true"> {{ listEntry.ind }}</td>
+                <td style=" width: 200px" class="listEntriesHL listEntry{{$index}}"> {{listEntry.studentName }}</td>
+                <td style="width: 100px" class="listEntriesHL listEntry{{$index}}">{{ listEntry.course }}</td>
+                <td style="width: 100px" class="listEntriesHL listEntry{{$index}}"> {{listEntry.tutorObject.name}}</td>
+                <td style="width: 200px; display: block;">
+                    <div class="listEntriesHL slider listEntry{{$index}}">
+                        <div class="slider-text"> {{ locations[listEntry.location] }}</div>
+                        <div class="slider-reveal">
+
+                            <div class="btn" ng-controller="testImgPlaceController"
+                                 ng-click="blastTheImage()">View Map</div>
+                        </div>
+
+
+                    </div>
+
+                    </td>
+                <td style="width: 100px" class="listEntriesHL listEntry{{$index}}"> 10:00 pm </td>
+            </tr>
+        </tbody>
+
+    </table>
+
+
+
+
+
+
+
+
+
+
+
 <div style="text-align: center; ">
     <div style="text-align: center; display: inline-block">
         <div class="imgButt">
-
-            <span class="testImageButton" ng-click="blastTheImage()">
-
-                Do the Image Thing <br> :|
-
-            </span>
 
             <img src="img/fabfloorplan.jpg"/>
 
