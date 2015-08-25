@@ -30,7 +30,7 @@
 </div>
 -->
 
-<table class="table" fixed-header
+<table class="table listPageItems" fixed-header
        style="width: 800px;
             margin: auto;">
 
@@ -82,10 +82,10 @@
 
 <div style="text-align: center;padding: 30px">
 <div style="margin:0 auto; display: inline">
-<input type="text" ng-model="launcher.tId"  style="text-align: center; border: 1px solid darkslategrey"/><br />
+<input  class="listPageItems" type="text" ng-model="launcher.tId"  style="text-align: center; border: 1px solid darkslategrey"/><br />
 
 
-    <p style="align-content: center" class="btn kbutton"
+    <p style="align-content: center" class="btn kbutton listPageItems" id="goButton"
        ng-click="identifyLaunchState()">Go{{launchStateIdentifier}} </p>
 
     <p> <button class="btn kbutton" ng-click="generateSampleEntries()">Generate Samples</button> </p>

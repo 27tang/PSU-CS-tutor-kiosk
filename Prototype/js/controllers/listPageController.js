@@ -64,7 +64,13 @@ app.controller('listPageController', ['$state','$scope','$timeout', 'helpList', 
         var isTutor = $scope.checkIfTidIsTutor();
         if(isTutor){
             idSaver.set($scope.launcher.tId);
-            $state.go('listPageTutorView');
+
+            angular.element(document.querySelector('#goButton')).toggleClass('flashButton');
+            angular.element(document.querySelectorAll('.listPageItems')).toggleClass('fadeOut');
+
+            $timeout(function(){$state.go('listPageTutorView')}, 700);
+
+
         } else if($scope.checkIfStudentExists()) {
             $scope.getStudentObject($scope.launcher.tId);
 
