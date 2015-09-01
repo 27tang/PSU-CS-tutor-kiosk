@@ -188,9 +188,14 @@ app.controller('listPageController', ['$state','$scope','$timeout', 'helpList', 
     $scope.aSyncGetTutor = function(index, hlEntries){
         var tID = hlEntries[index].tutorId;
 
-        entities.getTutor(tID).then(function(result){
-            hlEntries[index].tutorObject = result.data;
-        });
+        if(tID == null){
+            hlEntries[index].tutorObject = null;
+        } else {
+            entities.getTutor(tID).then(function(result){
+                hlEntries[index].tutorObject = result.data;
+            });
+        }
+
     };
 
     $scope.postListEntry = function (tuteeId, courseNum, tutorId, location) {
@@ -241,10 +246,9 @@ app.controller('listPageController', ['$state','$scope','$timeout', 'helpList', 
             }, 5000);
         };
 
-        $scope.putTutor = function(tutorToPut){
+        $scope.putTutor = function(tutorToPut, index){
             var entry = $scope.helpListEntries[$scope.launcher.entryId];
             entry.tutorId = tutorToPut;
-
             $scope.aSyncGetTutor($scope.launcher.entryId, $scope.helpListEntries);
 
             var text = '{"listEntry":{"course":"' + entry.course + '","date":"' + entry.date +  '","location":"'
@@ -257,28 +261,65 @@ app.controller('listPageController', ['$state','$scope','$timeout', 'helpList', 
                // $scope.reloadPage();
             });
 
+            if(tutorToPut != null){
+
+
+                angular.element(document.querySelectorAll('.entryNumber' + index + ' #tutorAssigned'))
+                    .removeClass('entryItemFadeIn');
+                angular.element(document.querySelectorAll('.entryNumber' + index + ' #tutorAssigned'))
+                    .toggleClass('entryItemFadeIn');
+            }
+
+        };
+
+        $scope.removeTutor = function(index) {
+
+            angular.element(document.querySelectorAll('.entryNumber' + index + ' #tutorAssigned'))
+                .toggleClass('entryItemFadeOut');
+            console.log("nulled it");
+
+            $timeout(function(){
+
+                $scope.putTutor(null, index);
+                $timeout(function() {
+                    angular.element(document.querySelectorAll('.entryNumber' + index + ' #tutorAssigned'))
+                        .removeClass('entryItemFadeOut');
+                }, 100);
+
+            }, 1050)
 
 
         };
 
-        $scope.deleteEntry = function(entryId){
 
-            var entry = $scope.helpListEntries[entryId];
-            console.log($scope.helpListEntries);
-            console.log("IDEE: " + entryId);
-            helpList.deleteHelpListEntry(entry.tuteeId).then(function(result){
+        $scope.deleteEntry = function(entryId, index){
+            console.log("DELETING INDEX: " + index);
+
+            var elem = angular.element(document.querySelectorAll('.entryNumber' + index))
+                .toggleClass('boxFadeOut');
+
+            $timeout(function(){
+
+                var entry = $scope.helpListEntries[entryId];
+                console.log($scope.helpListEntries);
+                console.log("IDEE: " + entryId);
+                helpList.deleteHelpListEntry(entry.tuteeId).then(function(result){
 
 
-               // $scope.reloadPage();
+                    // $scope.reloadPage();
 
-            });
+                });
 
-            $scope.helpListEntries.splice($scope.launcher.entryId, 1);
+                $scope.helpListEntries.splice($scope.launcher.entryId, 1);
 
-            var i;
-            for(i = 0; i < $scope.helpListEntries.length; i++){
-                $scope.helpListEntries[i].ind = i;
-            }
+                var i;
+                for(i = 0; i < $scope.helpListEntries.length; i++){
+                    $scope.helpListEntries[i].ind = i;
+                }
+
+            }, 900)
+
+
             //$timeout(function(){$scope.$apply(); console.log("APPLIED"); console.log($scope.helpListEntries);}, 2000);
 
         };

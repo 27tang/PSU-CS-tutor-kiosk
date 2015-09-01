@@ -42,12 +42,12 @@ body {
 
    /*background-image: url(../img/space2DarkerEvenDarker.jpg);
 */
-    background: linear-gradient(136deg, #000000, #000505, #181d38, #01051a);
-    background-size: 800% 800%;
+    background: linear-gradient(136deg, #000000, #000505, #0b0b1d, #01051a);
+    background-size: 600% 600%;
 
-    -webkit-animation: bgAnimate 17s ease infinite;
-    -moz-animation: bgAnimate 17s ease infinite;
-    animation: bgAnimate 17s ease infinite;
+    -webkit-animation: bgAnimate 70s ease infinite;
+    -moz-animation: bgAnimate 70s ease infinite;
+    animation: bgAnimate 70s ease infinite;
 
 
 

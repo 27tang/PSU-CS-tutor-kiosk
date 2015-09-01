@@ -1,5 +1,5 @@
 
-<div ng-repeat="entry in helpListEntries">
+<div ng-repeat="entry in helpListEntries | orderBy: 'date' ">
     <div class="entryBorderBox entryNumber{{$index}}" ng-click="expandBox($index)">
         <div style="height: 50px">
 
@@ -22,13 +22,23 @@
             </div>
 
             <div class="entryItem" id="time">
-                11:00 pm
+                {{ entry.date.substring(12, 23) }}
             </div>
+
+
         </div>
         <div class="hiddenOptions">
 
-            <div class="entryItem" id="claimEntry" ng-click="putTutor(launcher.tId)"> CLAIM STUDENT </div>
-            <div class="entryItem" id="deleteEntry" ng-click="deleteEntry(launcher.entryId)"> Delete </div>
+            <div class="entryItem" id="claimEntry"
+                 ng-hide="entry.tutorObject" ng-click="putTutor(launcher.tId, $index)"> CLAIM </div>
+
+            <div class="entryItem" id="hijackEntry"
+                 ng-show="entry.tutorObject" ng-click="putTutor(launcher.tId, $index)"> HIJACK</div>
+
+            <div class="entryItem" id="clearEntry"
+                 ng-show="entry.tutorObject" ng-click="removeTutor($index)"> CLEAR </div>
+
+            <div class="entryItem" id="deleteEntry" ng-click="deleteEntry(launcher.entryId, $index)"> DELETE </div>
         </div>
 
     </div>

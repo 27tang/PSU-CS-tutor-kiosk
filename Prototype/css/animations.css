@@ -6,7 +6,14 @@
        opacity:1;
     }
 }
-
+@keyframes fadeOut {
+    from {
+        opacity:1;
+    }
+    to {
+        opacity:0;
+    }
+}
 
 .table {
     height: 400px;
@@ -171,7 +178,10 @@ div .testImg{
     top:-80%;
     right: -90%;
     visibility: hidden;
-   transition: all 1.5s ease-in-out;
+    opacity: .5;
+    perspective: 100px;
+    transform: rotateX(90deg);
+   transition: all 1s ease-in-out;
 }
 
 .testImgBack {
@@ -207,8 +217,8 @@ div .testImg{
     visibility: visible;
     top: -30%;
     right: -40%;
-
-    transform: scale(.8);
+    opacity: 1;
+    transform: scale(.8); rotateX(-90deg);
 }
 
 
