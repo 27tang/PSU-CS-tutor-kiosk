@@ -1,0 +1,72 @@
+
+
+.entryBorderBox {
+
+   /* box-shadow: 0px 0px 7px rgb(139, 135, 255), white 0px 0px 5px inset;
+    */
+    background-color: rgba(255, 255, 255, 0.03);
+
+    margin: auto;
+    padding: 5px 5px 5px 5px;
+    width: 850px;
+    height: 50px;
+    text-align: center;
+    font-family: zekton;
+    font-color: rgba(171, 255, 252, 0.6);
+    transition: .5s ease;
+    overflow: hidden;
+
+}
+
+.expandedBox {
+
+    height: 100px;
+}
+
+.hiddenOptions {
+
+}
+
+#claimEntry {
+
+    color: rgba(15, 255, 0, 0.82);
+    text-shadow: 1px 1px 4px #93ff85;
+    width: 400px;
+}
+
+#deleteEntry {
+    color: rgba(255, 0, 43, 0.82);
+    text-shadow: 1px 1px 4px #ff8190;
+    width: 400px;
+    cursor: pointer;
+}
+
+.entryItem {
+    display: inline-block;
+    text-align: center;
+    font-size: 24px;
+    cursor: pointer;
+
+}
+
+
+
+#studentName {
+    width: 250px;
+}
+
+#course {
+    width: 100px;
+}
+
+#tutorAssigned {
+    width: 150px;
+}
+
+#location {
+    width: 150px;
+}
+
+#time {
+    width: 100px;
+}

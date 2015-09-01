@@ -1,12 +1,17 @@
-
-.table {
-    height: 400px;
-
+@keyframes fadeIn {
+    from {
+       opacity:0;
+    }
+    to {
+       opacity:1;
+    }
 }
 
 
-
-
+.table {
+    height: 400px;
+    animation: fadeIn 2s;
+}
 
       .tableStyle {
           margin: auto;

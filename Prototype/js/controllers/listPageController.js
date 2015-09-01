@@ -1,6 +1,6 @@
 app.factory('idSaver', function($http) {
 
-    var savedId = 0;
+    var savedId;
     return {
         set: function(toSet) {
             savedId = toSet;
@@ -207,29 +207,7 @@ app.controller('listPageController', ['$state','$scope','$timeout', 'helpList', 
         });
     };
 
-    $scope.putTutor = function(tutorToPut){
-        var entry = $scope.helpListEntries[$scope.launcher.entryId];
-        entry.tutorId = tutorToPut;
-        var text = '{"listEntry":{"course":"' + entry.course + '","date":"' + entry.date +  '","location":"'
-            + entry.location + '","tuteeId":'+ entry.tuteeId +',"entryId":'
-            + $scope.launcher.entryId +',"tutorId":' + entry.tutorId + '}}';
-        console.log("********************");
-        console.log(entry.tutorId);
-        console.log(entry.date);
-            helpList.putHelpListEntry(entry.tuteeId, text).then(function(result){
-                $scope.reloadPage();
-            })
 
-    };
-
-    $scope.deleteEntry = function(entryId){
-
-        var entry = $scope.helpListEntries[$scope.launcher.entryId];
-        console.log(entry.tuteeId);
-        helpList.deleteHelpListEntry(entry.tuteeId).then(function(result){
-            $scope.reloadPage();
-        });
-    };
 
 
     $scope.getSelectedTuteeId = function(index){
@@ -245,5 +223,66 @@ app.controller('listPageController', ['$state','$scope','$timeout', 'helpList', 
             angular.element(document.querySelectorAll('.listEntry' + index)).removeClass('trHighlighted')
         }, 5000);
     };
+
+
+        //TUTOR VIEW CONTROLS
+
+        $scope.expandBox = function(index) {
+
+            var indices = angular.element(document.querySelectorAll('#TlistIndex'));
+            $scope.launcher.entryId = parseInt(indices[index].innerHTML);
+
+            angular.element(document.querySelectorAll('.entryBorderBox')).removeClass('expandedBox');
+            angular.element(document.querySelectorAll('.entryNumber' + index))
+                .toggleClass('expandedBox');
+
+            $timeout(function(){
+                angular.element(document.querySelectorAll('.entryNumber' + index)).removeClass('expandedBox')
+            }, 5000);
+        };
+
+        $scope.putTutor = function(tutorToPut){
+            var entry = $scope.helpListEntries[$scope.launcher.entryId];
+            entry.tutorId = tutorToPut;
+
+            $scope.aSyncGetTutor($scope.launcher.entryId, $scope.helpListEntries);
+
+            var text = '{"listEntry":{"course":"' + entry.course + '","date":"' + entry.date +  '","location":"'
+                + entry.location + '","tuteeId":'+ entry.tuteeId +',"entryId":'
+                + $scope.launcher.entryId +',"tutorId":' + entry.tutorId + '}}';
+            console.log("********************");
+            console.log(entry.tutorId);
+            console.log(entry.date);
+            helpList.putHelpListEntry(entry.tuteeId, text).then(function(result){
+               // $scope.reloadPage();
+            });
+
+
+
+        };
+
+        $scope.deleteEntry = function(entryId){
+
+            var entry = $scope.helpListEntries[entryId];
+            console.log($scope.helpListEntries);
+            console.log("IDEE: " + entryId);
+            helpList.deleteHelpListEntry(entry.tuteeId).then(function(result){
+
+
+               // $scope.reloadPage();
+
+            });
+
+            $scope.helpListEntries.splice($scope.launcher.entryId, 1);
+
+            var i;
+            for(i = 0; i < $scope.helpListEntries.length; i++){
+                $scope.helpListEntries[i].ind = i;
+            }
+            //$timeout(function(){$scope.$apply(); console.log("APPLIED"); console.log($scope.helpListEntries);}, 2000);
+
+        };
+
+
 
 }]);

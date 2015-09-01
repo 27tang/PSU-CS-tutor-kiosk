@@ -1,6 +1,4 @@
 
-
-
 #status-buttons                 {  }
 #status-buttons a               { color:#FFF; display:inline-block; font-size:12px; margin-right:10px; text-align:center; text-transform:uppercase; }
 #status-buttons a:hover         { text-decoration:none; }
@@ -12,9 +10,6 @@
 
 
 
-
-
-
 @font-face {
     font-family: 'Marske';
     src: url('../fonts/Marske.otf')
@@ -22,13 +17,42 @@
     src: url('../fonts/Marske.ttf')
     format('truetype');
 }
-
+@font-face {
+    font-family: 'zekton';
+    src: url('../fonts/zekton%20rg.ttf')
+    format('truetype');
+}
+@-webkit-keyframes bgAnimate {
+    0%{background-position:0% 75%}
+    50%{background-position:100% 26%}
+    100%{background-position:0% 75%}
+}
+@-moz-keyframes bgAnimate {
+    0%{background-position:0% 75%}
+    50%{background-position:100% 26%}
+    100%{background-position:0% 75%}
+}
+@keyframes bgAniamte{
+    0%{background-position:0% 75%}
+    50%{background-position:100% 26%}
+    100%{background-position:0% 75%}
+}
 
 body {
-    background-image: url(../img/space2DarkerEvenDarker.jpg);
 
-    background-color: black;
-    background-size: 120%;
+   /*background-image: url(../img/space2DarkerEvenDarker.jpg);
+*/
+    background: linear-gradient(136deg, #000000, #000505, #181d38, #01051a);
+    background-size: 800% 800%;
+
+    -webkit-animation: bgAnimate 17s ease infinite;
+    -moz-animation: bgAnimate 17s ease infinite;
+    animation: bgAnimate 17s ease infinite;
+
+
+
+
+    background-color: #0e0e0e;
 }
 
 .fontStyle {

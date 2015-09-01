@@ -30,6 +30,8 @@
 </div>
 -->
 
+<div style="height: 420px">
+
 <table class="table listPageItems" fixed-header
        style="width: 800px;
             margin: auto;">
@@ -80,21 +82,22 @@
 
 </table>
 
-<div style="text-align: center;padding: 30px">
-<div style="margin:0 auto; display: inline">
-<input  class="listPageItems" type="text" ng-model="launcher.tId"  style="text-align: center; border: 1px solid darkslategrey"/><br />
-
-
-    <p style="align-content: center" class="btn kbutton listPageItems" id="goButton"
-       ng-click="identifyLaunchState()">Go{{launchStateIdentifier}} </p>
-
-    <p> <button class="btn kbutton" ng-click="generateSampleEntries()">Generate Samples</button> </p>
-
-
-</div>
 </div>
 
-<div class="imgButt" ng-controller="testImgPlaceController">
+<div style="text-align: center;padding: 60px">
+    <div style="margin:0 auto; display: inline">
+        <form ng-submit="identifyLaunchState()">
+            <input class="listPageItems" type="text" ng-model="launcher.tId"  style="text-align: center; border: 1px solid darkslategrey"/><br />
+        </form>
+
+        <p> <span  style="opacity:0.05" ng-click="generateSampleEntries()">Generate Samples</span> </p>
+
+
+    </div>
+</div>
+
+
+<div style="height: 0px" class="imgButt" ng-controller="testImgPlaceController">
 
     <img src="img/fabfloorplan.jpg"/>
 

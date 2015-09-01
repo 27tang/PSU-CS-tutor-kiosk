@@ -8,6 +8,8 @@ import service.HelpListService;
 import javax.annotation.security.PermitAll;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.List;
 
 /**
@@ -24,7 +26,15 @@ public class HelpListResource extends OptionsResource{
     public Response getHelpListEntries(){
         List<ListEntry> theList = helpListService.getAllListEntries();
 
+        InetAddress ip = null;
         System.out.println("GOT TO TEST PLACE");
+        try{
+            ip = InetAddress.getLocalHost();
+        } catch (UnknownHostException e){
+            e.printStackTrace();
+        }
+        System.out.println(ip);
+
         return Response.status(Response.Status.ACCEPTED)
                 .entity(new Gson().toJson(theList))
                 .header("Access-Control-Allow-Origin", "*")

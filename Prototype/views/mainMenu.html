@@ -1,6 +1,6 @@
 
 
-<div ng-repeat="buttonInfo in buttonInfos">
+<div ng-repeat="buttonInfo in buttonInfos" style="background-color: transparent">
    <ul style="padding: 20px;">
        <a style="align-content: center" class="btn kbutton" id="{{'button-' + $index}}"
           ng-click="buttonGo($index)" >
@@ -8,9 +8,5 @@
        </a>
     </ul>
 </div>
-
-
-
-<p> <a ui-sref="testImgPlace" class="btn btn-danger"> TEST FLOORPLAN JPG THING </a></p>
 
 

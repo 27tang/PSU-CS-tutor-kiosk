@@ -1,0 +1,38 @@
+
+<div ng-repeat="entry in helpListEntries">
+    <div class="entryBorderBox entryNumber{{$index}}" ng-click="expandBox($index)">
+        <div style="height: 50px">
+
+            <div class="entryItem" id="TlistIndex" ng-hide="false"> {{ entry.ind }}</div>
+
+            <div class="entryItem" id="studentName">
+                {{ entry.studentName }}
+            </div>
+
+            <div class="entryItem" id="course">
+                {{ entry.course }}
+            </div>
+
+            <div class="entryItem" id="tutorAssigned">
+                {{ entry.tutorObject.name }}
+            </div>
+
+            <div class="entryItem" id="location">
+                {{ locations[entry.location] }}
+            </div>
+
+            <div class="entryItem" id="time">
+                11:00 pm
+            </div>
+        </div>
+        <div class="hiddenOptions">
+
+            <div class="entryItem" id="claimEntry" ng-click="putTutor(launcher.tId)"> CLAIM STUDENT </div>
+            <div class="entryItem" id="deleteEntry" ng-click="deleteEntry(launcher.entryId)"> Delete </div>
+        </div>
+
+    </div>
+
+
+</div>
+

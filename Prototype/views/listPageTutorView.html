@@ -1,39 +1,37 @@
-<div class="box-table">
-
-    <div style="width: 840px; height:450px; margin: auto; background-color: rgba(244, 0, 54, 0.05);
-        overflow: auto; border: 3px solid rgba(153, 0, 0, 0.2);">
-        <table style="width: 800px">
-
-            <thead>
-            <th>#</th>
-            <th>Name</th>
-            <th>Course</th>
-            <th>Tutor Assigned</th>
-            <th>Location</th>
-            <th>Time</th>
-            </thead>
 
 
-            <tr ng-repeat="listEntry in helpListEntries | orderBy:'date'" ng-click="getSelectedTuteeId($index)">
-                <td>{{$index + 1}}</td>
-                <td id="listIndex" ng-hide="true"> {{ listEntry.ind }}</td>
-                <td>{{ listEntry.studentObject.name }}</td>
-                <td>{{ listEntry.course }}</td>
-                <td>{{ listEntry.tutorObject.name }}</td>
-                <td >{{ listEntry.location }}</td>
-                <td>{{ listEntry.date}}</td>
-            </tr>
+<div style="animation: fadeIn 2s">
 
 
-        </table>
+    <div class="entryBorderBox">
+        <div class="entryItem" id="studentName">
+            Name
+        </div>
+
+        <div class="entryItem" id="course">
+            Course
+        </div>
+
+        <div class="entryItem" id="tutorAssigned">
+            Tutor
+        </div>
+
+        <div class="entryItem" id="location">
+            Location
+        </div>
+
+        <div class="entryItem" id="time">
+            Time
+        </div>
     </div>
+
+
+
+    <tutor-View-List-Entry entries=helpListEntries></tutor-View-List-Entry>
+
+
 </div>
 
 <p class = "fontStyle"> TUTOR: {{launcher.tutorObject.name}} </p>
 <p class="fontStyle">Entry: {{launcher.entryId}} </p>
-<a class="btn kbutton" ng-click="putTutor(launcher.tId)" >Assign to Student</a>
-<a class="btn kbutton" ng-click="putTutor(0)" >Remove from Student</a>
 
-
-
-<a class="btn kbutton" ng-click="deleteEntry(launcher.entryId)" >TEST DELETE</a>
