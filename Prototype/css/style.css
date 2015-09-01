@@ -40,8 +40,8 @@
 
 body {
 
-   /*background-image: url(../img/space2DarkerEvenDarker.jpg);
-*/
+   background-image: url(../img/space2DarkerEvenDarker.jpg);
+/*
     background: linear-gradient(136deg, #000000, #000505, #0b0b1d, #01051a);
     background-size: 600% 600%;
 
@@ -50,7 +50,7 @@ body {
     animation: bgAnimate 70s ease infinite;
 
 
-
+*/
 
     background-color: #0e0e0e;
 }
