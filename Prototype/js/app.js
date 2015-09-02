@@ -1,6 +1,6 @@
 
 
-var app = angular.module('kioskApp', ['anguFixedHeaderTable','ngAnimate', 'ui.router']);
+var app = angular.module('kioskApp', ['anguFixedHeaderTable','ngAnimate', 'ui.router', 'mp.autoFocus']);
 
 
 
