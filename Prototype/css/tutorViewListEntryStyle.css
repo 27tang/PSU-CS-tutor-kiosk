@@ -7,7 +7,7 @@
     background-color: rgba(255, 255, 255, 0.03);
 
     margin: auto;
-    padding: 5px 5px 5px 5px;
+    padding: 0 0 0 0;
     width: 850px;
     height: 50px;
     text-align: center;
@@ -63,7 +63,7 @@
 }
 
 .entryItemFadeIn {
-    animation: fadeIn 1s;
+    animation: fadeIn 1s, blur 1s;
 }
 
 .entryItemFadeOut {
@@ -72,7 +72,7 @@
 
 .boxFadeOut {
     animation: fadeOut 1s;
-    transition: height 1s ease;
+    transition: height 1.2s ease;
     height: 0px;
 }
 

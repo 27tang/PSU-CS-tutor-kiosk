@@ -209,8 +209,8 @@ app.controller('listPageController', ['$state','$scope','$timeout', 'helpList', 
         if(tID == null){
             hlEntries[index].tutorObject = null;
         } else {
-            entities.getTutor(tID).then(function(result){
-                hlEntries[index].tutorObject = result.data;
+                entities.getTutor(tID).then(function(result){
+                    hlEntries[index].tutorObject = result.data;
             });
         }
 
