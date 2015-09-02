@@ -30,13 +30,13 @@
         <div class="hiddenOptions">
 
             <div class="entryItem" id="claimEntry"
-                 ng-hide="entry.tutorObject" ng-click="putTutor(launcher.tId, $index)"> CLAIM </div>
+                 ng-hide="entry.tutorObject.name" ng-click="putTutor(launcher.tId, $index)"> CLAIM </div>
 
             <div class="entryItem" id="hijackEntry"
-                 ng-show="entry.tutorObject" ng-click="putTutor(launcher.tId, $index)"> HIJACK</div>
+                 ng-show="entry.tutorObject.name" ng-click="putTutor(launcher.tId, $index)"> HIJACK</div>
 
             <div class="entryItem" id="clearEntry"
-                 ng-show="entry.tutorObject" ng-click="removeTutor($index)"> CLEAR </div>
+                 ng-show="entry.tutorObject.name" ng-click="removeTutor($index)"> CLEAR </div>
 
             <div class="entryItem" id="deleteEntry" ng-click="deleteEntry(launcher.entryId, $index)"> DELETE </div>
         </div>

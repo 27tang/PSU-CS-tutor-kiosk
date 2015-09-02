@@ -86,8 +86,21 @@
 
 <div style="text-align: center;padding: 60px">
     <div style="margin:0 auto; display: inline">
-        <form ng-submit="identifyLaunchState()">
-            <input class="listPageItems" type="text" ng-model="launcher.tId"  style="text-align: center; border: 1px solid darkslategrey"/><br />
+
+        <form name="idForm">
+
+            <input class="listPageItems"
+                   name="idInput"
+                   type="text"
+                   ng-model="launcher.tId"
+                   ng-maxlength="9"
+                   ng-minlength="9"
+                   required
+
+                   style="text-align: center;
+                    height: 40px;
+                   border: 1px solid darkslategrey"/><br />
+
         </form>
 
         <p> <span  style="opacity:0.05" ng-click="generateSampleEntries()">Generate Samples</span> </p>
@@ -99,7 +112,7 @@
 
 <div style="height: 0px" class="imgButt" ng-controller="testImgPlaceController">
 
-    <img src="img/floorplanPSD.png"/>
+    <img src="img/floorplan.png"/>
 
     <div class="testImgBack" ng-click="goBack()">
 

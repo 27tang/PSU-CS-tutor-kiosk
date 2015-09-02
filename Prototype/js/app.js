@@ -45,7 +45,7 @@ app.config(function($stateProvider, $urlRouterProvider){
         .state('listPageTutorView', {
             url: '/listPageTutorView',
             templateUrl: 'views/listPageTutorView.html',
-            controller: 'listPageController'
+            //controller: 'listPageController'
         })
 
         //nested view of listpage - multi-step form for creating a new help list entry

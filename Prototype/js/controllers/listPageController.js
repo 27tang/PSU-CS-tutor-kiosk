@@ -1,12 +1,16 @@
 app.factory('idSaver', function($http) {
 
-    var savedId;
+    var savedId = "";
     return {
         set: function(toSet) {
             savedId = toSet;
         },
         get: function() {
             return savedId;
+        },
+        clear: function() {
+            console.log("SavedId Used to be: " +savedId+ ", now its nulled");
+            savedId = "";
         }
 
     }
@@ -37,7 +41,12 @@ app.controller('listPageController', ['$state','$scope','$timeout', 'helpList', 
         MrMeeseeks: 111111111
     };
     $scope.launcher = {};
-    $scope.launcher.tId = idSaver.get();
+        console.log("launched it");
+
+
+        $scope.launcher.tId = idSaver.get();
+            idSaver.clear();
+
     $scope.checkIfTidIsTutor = function(){
             var isTutor = false;
             for(key in $scope.tutorList) {
@@ -78,8 +87,17 @@ app.controller('listPageController', ['$state','$scope','$timeout', 'helpList', 
             $state.go('.newEntryForm.selectCourse');
         } else {
         }
-
     };
+
+    $scope.$watch('idForm.idInput.$valid', function(newVal, oldVal){
+
+        console.log(newVal);
+        console.log(oldVal);
+
+        if(newVal) {
+            $scope.identifyLaunchState();
+        }
+    });
 
     $scope.checkIfStudentIsOnList = function(){
 
