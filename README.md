@@ -8,3 +8,5 @@ angularJS
 Backend: (tkiosk/tkserver)
 REST API - Jax-RS
 Apache TomEE
+JDBC
+
