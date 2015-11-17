@@ -1,15 +1,15 @@
-# tkiosk
+# CS-Tutor-Kiosk
 
-tkiosk is an web-based electronic sign-up application for computer science students at PSU to sign-up for tutoring.
+CS-Tutor-Kiosk is an web-based electronic sign-up application for computer science students at PSU to sign-up for tutoring.
 
 
-Frontend: (tkiosk/webApp)
+Frontend: (CS-tutor-kiosk/webApp)
 
 angularJS
 
 
 
-Backend: (tkiosk/tkserver)
+Backend: (CS-tutor-kiosk/tkREST-API)
 
 REST API - Jax-RS
 
